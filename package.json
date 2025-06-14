@@ -13,13 +13,25 @@
     "clean": "hardhat clean",
     "node": "NODE_OPTIONS='--max-old-space-size=8192' hardhat node"
   },
-  "keywords": ["solidity", "ethereum", "smart-contracts", "appalachia", "community-currency"],
+  "keywords": [
+    "solidity",
+    "ethereum",
+    "smart-contracts",
+    "appalachia",
+    "community-currency"
+  ],
   "author": "Harmony for Hope, Inc.",
   "license": "MIT",
   "dependencies": {
+    "@chainlink/contracts": "^0.6.1",
     "@openzeppelin/contracts": "^4.9.3",
     "@openzeppelin/contracts-upgradeable": "^4.9.3",
-    "@chainlink/contracts": "^0.6.1"
+    "compression": "^1.8.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "winston": "^3.17.0"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.2.3",
