@@ -42,3 +42,60 @@ app.get('/health', (req, res) => {
 });
 
 module.exports = app;
+
+// Real contract integration endpoints
+const { getContractStatus, executeRealPurchase } = require('./real-blockchain-integration');
+
+// Enhanced coordinator status with real contract data
+app.get('/api/coordinator/status-real', async (req, res) => {
+  try {
+    const contractStatus = await getContractStatus();
+    
+    res.json({
+      status: 'active',
+      blockchain: contractStatus.status,
+      mountainshares: 'operational',
+      contract: contractStatus,
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: 'error',
+      blockchain: 'disconnected',
+      error: error.message,
+      timestamp: new Date().toISOString()
+    });
+  }
+});
+
+// Real purchase endpoint with blockchain integration
+app.post('/api/purchase-real', async (req, res) => {
+  const { amount, walletAddress } = req.body;
+  
+  if (!amount || !walletAddress) {
+    return res.status(400).json({ 
+      error: 'Amount and walletAddress are required' 
+    });
+  }
+
+  try {
+    // Execute real blockchain transaction
+    const result = await executeRealPurchase(amount, walletAddress);
+    
+    res.json({
+      success: true,
+      message: `Successfully purchased ${amount} MountainShare${amount > 1 ? 's' : ''}!`,
+      blockchain: result,
+      transactionHash: result.transactionHash,
+      arbitrumExplorer: result.arbitrumExplorer,
+      gasUsed: result.gasUsed,
+      blockNumber: result.blockNumber
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: error.message,
+      message: 'Blockchain transaction failed'
+    });
+  }
+});
