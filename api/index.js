@@ -44,7 +44,7 @@ app.get('/health', (req, res) => {
 module.exports = app;
 
 // Real contract integration endpoints
-const { getContractStatus, executeRealPurchase } = require('./real-blockchain-integration');
+// const { getContractStatus, executeRealPurchase } = require('./real-blockchain-integration');
 
 // Enhanced coordinator status with real contract data
 app.get('/api/coordinator/status-real', async (req, res) => {
@@ -101,7 +101,7 @@ app.post('/api/purchase-real', async (req, res) => {
 });
 
 // Import real blockchain integration
-const { getContractStatus, executeRealPurchase } = require('./real-blockchain-integration');
+// const { getContractStatus, executeRealPurchase } = require('./real-blockchain-integration');
 
 // Enhanced coordinator status with real contract data
 app.get('/api/coordinator/status-real', async (req, res) => {
