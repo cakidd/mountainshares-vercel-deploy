@@ -28,6 +28,7 @@ app.post('/api/purchase', (req, res) => {
 
 module.exports = app;
 
+
 // Real contract integration endpoint
 app.get('/api/coordinator/status-real', async (req, res) => {
   try {
@@ -75,3 +76,5 @@ app.get('/api/coordinator/status-real', async (req, res) => {
     });
   }
 });
+
+module.exports = app;
