@@ -79,6 +79,7 @@ app.get('/api/coordinator/status-real', async (req, res) => {
 
 module.exports = app;
 
+
 // Stripe payment processing integration
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
@@ -128,3 +129,5 @@ app.post('/api/confirm-purchase', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+module.exports = app;
