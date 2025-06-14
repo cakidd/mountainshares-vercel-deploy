@@ -1,0 +1,28 @@
+{
+  "name": "mountainshares-compliance-framework",
+  "version": "1.0.0",
+  "description": "Complete regulatory compliance bundle for MountainShares emergency response tokens",
+  "main": "index.js",
+  "scripts": {
+    "compile": "npx hardhat compile",
+    "deploy": "npx hardhat run scripts/deploy-mountainshares-compliance.js",
+    "deploy-local": "npx hardhat run scripts/deploy-mountainshares-compliance.js --network localhost",
+    "deploy-testnet": "npx hardhat run scripts/deploy-mountainshares-compliance.js --network goerli",
+    "test": "npx hardhat test",
+    "node": "npx hardhat node"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.9.3",
+    "hardhat": "^2.17.1",
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "ethers": "^5.7.2"
+  },
+  "devDependencies": {
+    "@nomiclabs/hardhat-waffle": "^2.0.6",
+    "ethereum-waffle": "^4.0.10",
+    "chai": "^4.3.7"
+  },
+  "keywords": ["ethereum", "smart-contracts", "emergency-response", "compliance", "mountainshares"],
+  "author": "MountainShares Team",
+  "license": "MIT"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "mountainshares-phase-system",
+  "version": "1.0.0",
+  "description": "MountainShares 3-Stage Dynamic Phase System",
+  "main": "phase-manager.js",
+  "scripts": {
+    "test": "node test-phase-system.js",
+    "start": "node emergency-integration.js"
+  },
+  "dependencies": {
+    "ethers": "^6.14.3",
+    "winston": "^3.17.0"
+  }
+}

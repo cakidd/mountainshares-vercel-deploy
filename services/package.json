@@ -1,0 +1,12 @@
+{
+  "name": "services",
+  "version": "1.0.0",
+  "main": "continental-emergency-backup-20250602.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

@@ -1,0 +1,43 @@
+const { ethers } = require("ethers");
+const axios = require('axios');
+const winston = require('winston');
+
+// ARC Dense Coverage - Maximum granular coverage for Appalachian regions
+const ARC_DENSE_COVERAGE = [
+    // West Virginia - Ultra-dense
+    { name: "Charleston WV", lat: 38.3498, lon: -81.6326, state: "WV", priority: "high" },
+    { name: "Huntington WV", lat: 38.4192, lon: -82.4452, state: "WV", priority: "high" },
+    { name: "Fayetteville WV", lat: 38.0548, lon: -81.1040, state: "WV", priority: "high" },
+    { name: "Beckley WV", lat: 37.7781, lon: -81.1881, state: "WV", priority: "high" },
+    { name: "Morgantown WV", lat: 39.6295, lon: -79.9553, state: "WV", priority: "high" },
+    { name: "Parkersburg WV", lat: 39.2667, lon: -81.5615, state: "WV", priority: "high" },
+    { name: "Wheeling WV", lat: 40.0640, lon: -80.7209, state: "WV", priority: "high" },
+    { name: "Martinsburg WV", lat: 39.4565, lon: -77.9636, state: "WV", priority: "high" },
+    { name: "Bluefield WV", lat: 37.2696, lon: -81.2223, state: "WV", priority: "high" },
+    { name: "Lewisburg WV", lat: 37.8018, lon: -80.4456, state: "WV", priority: "high" },
+    
+    // Pennsylvania ARC counties
+    { name: "Pittsburgh PA", lat: 40.4406, lon: -79.9959, state: "PA", priority: "high" },
+    { name: "Altoona PA", lat: 40.5187, lon: -78.3947, state: "PA", priority: "high" },
+    { name: "Johnstown PA", lat: 40.3267, lon: -78.9220, state: "PA", priority: "high" },
+    
+    // Virginia ARC counties - Southwest Virginia mountains
+    { name: "Bristol VA", lat: 36.5951, lon: -82.1887, state: "VA", priority: "high" },
+    { name: "Abingdon VA", lat: 36.7098, lon: -82.0187, state: "VA", priority: "high" },
+    { name: "Big Stone Gap VA", lat: 36.8687, lon: -82.7788, state: "VA", priority: "high" },
+    
+    // Kentucky ARC counties - Eastern Kentucky mountains
+    { name: "Pikeville KY", lat: 37.4793, lon: -82.5188, state: "KY", priority: "high" },
+    { name: "Hazard KY", lat: 37.2493, lon: -83.1932, state: "KY", priority: "high" },
+    { name: "Prestonsburg KY", lat: 37.6687, lon: -82.7718, state: "KY", priority: "high" },
+    
+    // Tennessee ARC counties - East Tennessee mountains
+    { name: "Kingsport TN", lat: 36.5484, lon: -82.5618, state: "TN", priority: "high" },
+    { name: "Johnson City TN", lat: 36.3134, lon: -82.3535, state: "TN", priority: "high" },
+    { name: "Morristown TN", lat: 36.2140, lon: -83.2949, state: "TN", priority: "high" },
+    
+    // North Carolina ARC counties - Western NC mountains
+    { name: "Asheville NC", lat: 35.5951, lon: -82.5515, state: "NC", priority: "high" },
+    { name: "Boone NC", lat: 36.2168, lon: -81.6746, state: "NC", priority: "high" },
+    { name: "Morganton NC", lat: 35.7451, lon: -81.6848, state: "NC", priority: "high" }
+];
