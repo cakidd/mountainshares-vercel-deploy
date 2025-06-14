@@ -88,7 +88,7 @@ app.post('/api/create-payment-intent', async (req, res) => {
   
   try {
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: amount * 5000, // $50 per MountainShare in cents
+      amount: amount * 100, // $50 per MountainShare in cents
       currency,
       metadata: { 
         mountainshares_purchase: true,
@@ -120,7 +120,7 @@ app.post('/api/confirm-purchase', async (req, res) => {
         message: `Successfully purchased ${amount} MountainShare${amount > 1 ? 's' : ''}!`,
         transactionId: `ms_${Date.now()}`,
         amount: amount,
-        totalCost: amount * 50
+        totalCost: amount * 1
       });
     } else {
       res.status(400).json({ error: 'Payment not completed' });
@@ -162,7 +162,7 @@ app.post('/api/confirm-purchase', async (req, res) => {
             transactionHash: mockTxHash,
             arbitrumExplorer: `https://arbiscan.io/tx/${mockTxHash}`,
             amount: amount,
-            totalCost: amount * 50,
+            totalCost: amount * 1,
             walletAddress: walletAddress,
             timestamp: new Date().toISOString()
           });
@@ -173,7 +173,7 @@ app.post('/api/confirm-purchase', async (req, res) => {
             paymentStatus: 'completed',
             message: `Payment successful! MountainShares will be transferred shortly.`,
             amount: amount,
-            totalCost: amount * 50,
+            totalCost: amount * 1,
             walletAddress: walletAddress,
             note: 'Blockchain transaction pending',
             timestamp: new Date().toISOString()
@@ -186,7 +186,7 @@ app.post('/api/confirm-purchase', async (req, res) => {
           paymentStatus: 'completed',
           message: `Successfully purchased ${amount} MountainShare${amount > 1 ? 's' : ''}!`,
           amount: amount,
-          totalCost: amount * 50,
+          totalCost: amount * 1,
           walletAddress: walletAddress,
           transactionId: `ms_${Date.now()}`,
           note: 'Real blockchain integration ready for deployment',
