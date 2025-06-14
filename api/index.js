@@ -78,3 +78,53 @@ app.get('/api/coordinator/status-real', async (req, res) => {
 });
 
 module.exports = app;
+
+// Stripe payment processing integration
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+
+app.post('/api/create-payment-intent', async (req, res) => {
+  const { amount, currency = 'usd', walletAddress } = req.body;
+  
+  try {
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: amount * 5000, // $50 per MountainShare in cents
+      currency,
+      metadata: { 
+        mountainshares_purchase: true,
+        wallet_address: walletAddress,
+        shares_amount: amount
+      }
+    });
+    
+    res.json({ 
+      clientSecret: paymentIntent.client_secret,
+      paymentIntentId: paymentIntent.id
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.post('/api/confirm-purchase', async (req, res) => {
+  const { paymentIntentId, walletAddress, amount } = req.body;
+  
+  try {
+    // Verify payment completed
+    const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+    
+    if (paymentIntent.status === 'succeeded') {
+      res.json({
+        success: true,
+        paymentStatus: 'completed',
+        message: `Successfully purchased ${amount} MountainShare${amount > 1 ? 's' : ''}!`,
+        transactionId: `ms_${Date.now()}`,
+        amount: amount,
+        totalCost: amount * 50
+      });
+    } else {
+      res.status(400).json({ error: 'Payment not completed' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
