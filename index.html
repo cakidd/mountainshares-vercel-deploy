@@ -1387,10 +1387,10 @@ let useProxyMode = false;
                 
                 if (data.success) {
                     const pricing = data.pricing;
-                    document.getElementById('token-value').textContent = `${(tokenValue || 0).toFixed(2)}`;
-                    document.getElementById('stripe-fee').textContent = `${(stripeFee || 0).toFixed(2)}`;
-                    document.getElementById('ms-fee').textContent = `${(mountainSharesFee || 0).toFixed(2)}`;
-                    document.getElementById('total-price').textContent = `${(totalCharge || 0).toFixed(2)}`;
+                    document.getElementById('token-value').textContent = `${(tokenPrice || 0).toFixed(2)}`;
+                    document.getElementById('stripe-fee').textContent = `${(processingFee || 0).toFixed(2)}`;
+                    document.getElementById('ms-fee').textContent = `${(platformFee || 0).toFixed(2)}`;
+                    document.getElementById('total-price').textContent = `${(total || 0).toFixed(2)}`;
                     return;
                 }
             } catch (error) {
@@ -1411,13 +1411,13 @@ let useProxyMode = false;
 
         // Fallback price calculation
         function calculateFallbackPrice(quantity) {
-            const tokenValue = quantity * 1.00;
-            const stripeFee = tokenValue * 0.029 + 0.30;
-            const msFee = tokenValue * 0.02;
-            const total = tokenValue + stripeFee + msFee;
+            const tokenPrice = quantity * 1.00;
+            const processingFee = tokenPrice * 0.029 + 0.30;
+            const msFee = tokenPrice * 0.02;
+            const total = tokenPrice + processingFee + msFee;
             
-            document.getElementById('token-value').textContent = `${(tokenValue || 0).toFixed(2)}`;
-            document.getElementById('stripe-fee').textContent = `${(stripeFee || 0).toFixed(2)}`;
+            document.getElementById('token-value').textContent = `${(tokenPrice || 0).toFixed(2)}`;
+            document.getElementById('stripe-fee').textContent = `${(processingFee || 0).toFixed(2)}`;
             document.getElementById('ms-fee').textContent = `${(msFee || 0).toFixed(2)}`;
             document.getElementById('total-price').textContent = `${(total || 0).toFixed(2)}`;
         }
