@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-eval' 'unsafe-inline' https://js.stripe.com https://checkout.stripe.com; object-src 'none';">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-eval' 'unsafe-inline' https://js.stripe.com https://checkout.stripe.com https://www.googletagmanager.com https://tagmanager.google.com; img-src 'self' data: https://www.googletagmanager.com https://ssl.gstatic.com; connect-src 'self' https://www.googletagmanager.com https://mountainshares-backend-production.up.railway.app; object-src 'none';">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-eval' 'unsafe-inline' https://js.stripe.com https://checkout.stripe.com https://www.googletagmanager.com https://tagmanager.google.com; img-src 'self' data: https://www.googletagmanager.com https://ssl.gstatic.com; connect-src 'self' https://www.googletagmanager.com https://mountainshares-backend-production.up.railway.app; object-src 'none';">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Commons – West Virginia Business Network | Mountaineers </title>
@@ -794,7 +795,8 @@
                             
                             <div style="margin-bottom: 20px;">
                                 <label style="color: var(--mountain-white); display: block; margin-bottom: 8px;">Number of MountainShares:</label>
-                                <label for="ms-quantity"><input type="number" id="ms-quantity" min="1" value="5" style="width: 100%; padding: 15px; border: 2px solid var(--sky-blue); border-radius: 10px; font-size: 18px; background: var(--mountain-dark); color: var(--mountain-white);" oninput="calculatePrice()"></label>
+                                <label for="ms-quantity"><label for="ms-quantity">Token Quantity:</label>
+<input type="number" id="ms-quantity" min="1" value="5" style="width: 100%; padding: 15px; border: 2px solid var(--sky-blue); border-radius: 10px; font-size: 18px; background: var(--mountain-dark); color: var(--mountain-white);" oninput="calculatePrice()"></label>
                             </div>
                             
                             <div style="margin-bottom: 20px;">
