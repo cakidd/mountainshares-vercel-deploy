@@ -1041,6 +1041,7 @@
                 
                 if (response.ok) {
                     const data = await response.json();
+    console.log("API Response:", data);
                     console.log('✅ API Response:', data);
                     
                     // Success - reset all failure states
@@ -1361,6 +1362,8 @@
 
         // Calculate live pricing with circuit breaker protection
         async function calculatePrice() {
+    console.log("calculatePrice triggered");
+    console.log("Quantity:", document.getElementById("ms-quantity").value);
             const quantity = parseInt(document.getElementById('ms-quantity').value) || 1;
             
             // Circuit breaker: Use offline calculation if server is known to be down
@@ -1394,6 +1397,7 @@ let useProxyMode = false;
                 
                 clearTimeout(timeoutId);
                 const data = await response.json();
+    console.log("API Response:", data);
                 
                 if (data.success) {
                     const pricing = data.pricing;
