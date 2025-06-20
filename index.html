@@ -1387,10 +1387,10 @@ let useProxyMode = false;
                 
                 if (data.success) {
                     const pricing = data.pricing;
-                    document.getElementById('token-value').textContent = `${pricing.(tokenValue || 0).toFixed(2)}`;
-                    document.getElementById('stripe-fee').textContent = `${pricing.(stripeFee || 0).toFixed(2)}`;
-                    document.getElementById('ms-fee').textContent = `${pricing.(mountainSharesFee || 0).toFixed(2)}`;
-                    document.getElementById('total-price').textContent = `${pricing.(totalCharge || 0).toFixed(2)}`;
+                    document.getElementById('token-value').textContent = `${(tokenValue || 0).toFixed(2)}`;
+                    document.getElementById('stripe-fee').textContent = `${(stripeFee || 0).toFixed(2)}`;
+                    document.getElementById('ms-fee').textContent = `${(mountainSharesFee || 0).toFixed(2)}`;
+                    document.getElementById('total-price').textContent = `${(totalCharge || 0).toFixed(2)}`;
                     return;
                 }
             } catch (error) {
