@@ -1354,7 +1354,9 @@
             const quantity = parseInt(document.getElementById('ms-quantity').value) || 1;
             
             // Circuit breaker: Use offline calculation if server is known to be down
-            if (serverDown || offlineMode) {
+             let serverDown = false;
+             let offlineMode = false; 
+             if (serverDown || offlineMode) {
                 console.log('📱 Using offline calculation (server down or offline mode)');
                 calculateFallbackPrice(quantity);
                 return;
