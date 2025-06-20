@@ -1423,7 +1423,7 @@ let useProxyMode = false;
         function calculateFallbackPrice(quantity) {
             const tokenPrice = quantity * 1.00;
             const processingFee = tokenPrice * 0.029 + 0.30;
-            const msFee = tokenPrice * 0.02;
+            const msFee = Math.ceil((tokenPrice * 0.02) * 100) / 100;
             const total = tokenPrice + processingFee + msFee;
             
             document.getElementById('token-value').textContent = `${(pricing.tokenPrice || 0).toFixed(2)}`;
