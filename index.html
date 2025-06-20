@@ -1387,10 +1387,10 @@ let useProxyMode = false;
                 
                 if (data.success) {
                     const pricing = data.pricing;
-                    document.getElementById('token-value').textContent = `${(tokenPrice || 0).toFixed(2)}`;
-                    document.getElementById('stripe-fee').textContent = `${(processingFee || 0).toFixed(2)}`;
-                    document.getElementById('ms-fee').textContent = `${(platformFee || 0).toFixed(2)}`;
-                    document.getElementById('total-price').textContent = `${(total || 0).toFixed(2)}`;
+                    document.getElementById('token-value').textContent = `${(pricing.tokenPrice || 0).toFixed(2)}`;
+                    document.getElementById('stripe-fee').textContent = `${(pricing.processingFee || 0).toFixed(2)}`;
+                    document.getElementById('ms-fee').textContent = `${(pricing.platformFee || 0).toFixed(2)}`;
+                    document.getElementById('total-price').textContent = `${(pricing.total || 0).toFixed(2)}`;
                     return;
                 }
             } catch (error) {
@@ -1416,10 +1416,10 @@ let useProxyMode = false;
             const msFee = tokenPrice * 0.02;
             const total = tokenPrice + processingFee + msFee;
             
-            document.getElementById('token-value').textContent = `${(tokenPrice || 0).toFixed(2)}`;
-            document.getElementById('stripe-fee').textContent = `${(processingFee || 0).toFixed(2)}`;
+            document.getElementById('token-value').textContent = `${(pricing.tokenPrice || 0).toFixed(2)}`;
+            document.getElementById('stripe-fee').textContent = `${(pricing.processingFee || 0).toFixed(2)}`;
             document.getElementById('ms-fee').textContent = `${(msFee || 0).toFixed(2)}`;
-            document.getElementById('total-price').textContent = `${(total || 0).toFixed(2)}`;
+            document.getElementById('total-price').textContent = `${(pricing.total || 0).toFixed(2)}`;
         }
 
         // Connect MetaMask wallet
