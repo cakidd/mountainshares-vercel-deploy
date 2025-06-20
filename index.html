@@ -1387,10 +1387,10 @@ let useProxyMode = false;
                 
                 if (data.success) {
                     const pricing = data.pricing;
-                    document.getElementById('token-value').textContent = `${pricing.tokenValue.toFixed(2)}`;
-                    document.getElementById('stripe-fee').textContent = `${pricing.stripeFee.toFixed(2)}`;
-                    document.getElementById('ms-fee').textContent = `${pricing.mountainSharesFee.toFixed(2)}`;
-                    document.getElementById('total-price').textContent = `${pricing.totalCharge.toFixed(2)}`;
+                    document.getElementById('token-value').textContent = `${pricing.(tokenValue || 0).toFixed(2)}`;
+                    document.getElementById('stripe-fee').textContent = `${pricing.(stripeFee || 0).toFixed(2)}`;
+                    document.getElementById('ms-fee').textContent = `${pricing.(mountainSharesFee || 0).toFixed(2)}`;
+                    document.getElementById('total-price').textContent = `${pricing.(totalCharge || 0).toFixed(2)}`;
                     return;
                 }
             } catch (error) {
@@ -1416,10 +1416,10 @@ let useProxyMode = false;
             const msFee = tokenValue * 0.02;
             const total = tokenValue + stripeFee + msFee;
             
-            document.getElementById('token-value').textContent = `${tokenValue.toFixed(2)}`;
-            document.getElementById('stripe-fee').textContent = `${stripeFee.toFixed(2)}`;
-            document.getElementById('ms-fee').textContent = `${msFee.toFixed(2)}`;
-            document.getElementById('total-price').textContent = `${total.toFixed(2)}`;
+            document.getElementById('token-value').textContent = `${(tokenValue || 0).toFixed(2)}`;
+            document.getElementById('stripe-fee').textContent = `${(stripeFee || 0).toFixed(2)}`;
+            document.getElementById('ms-fee').textContent = `${(msFee || 0).toFixed(2)}`;
+            document.getElementById('total-price').textContent = `${(total || 0).toFixed(2)}`;
         }
 
         // Connect MetaMask wallet
