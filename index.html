@@ -1355,6 +1355,7 @@
             
             // Circuit breaker: Use offline calculation if server is known to be down
              let serverDown = false;
+let useProxyMode = false;
              let offlineMode = false; 
              if (serverDown || offlineMode) {
                 console.log('📱 Using offline calculation (server down or offline mode)');
@@ -1455,7 +1456,7 @@
             }
             
             // For demo purposes - show coming soon message
-            showStatus('🚀 MountainShares purchasing will be available when the platform launches in Fall 2025!', 'success', 'payment-status');
+            showStatus('🚀 Purchase MountainShares now!', 'success', 'payment-status');
         }
 
         // Show status messages with specific target
