@@ -1147,6 +1147,9 @@
                 };
                 
                 console.log('Creating checkout session:', checkoutData);
+                console.log("Amount:", amount);
+                console.log("Wallet:", currentUserAddress);
+                console.log("CheckoutData object:", JSON.stringify(checkoutData));
                 
                 const response = await fetch(`/api/create-checkout-session`, {
                     method: "POST",

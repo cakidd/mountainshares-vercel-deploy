@@ -16,6 +16,7 @@ export default async function handler(req, res) {
       headers: {
         'Content-Type': 'application/json',
       },
+    console.log("Vercel API received:", req.body);
       body: JSON.stringify(req.body)
     });
     
