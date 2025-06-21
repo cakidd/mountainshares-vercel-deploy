@@ -34,6 +34,10 @@
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-526FNHHQ5Y"></script>
     <script>
+document.addEventListener("DOMContentLoaded", function() {
+  const tab = new bootstrap.Tab(document.querySelector("#myTab button"));
+  tab.show();
+});
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
@@ -601,11 +605,11 @@
 
         <div class="business-nav">
             <nav class="nav-container" role="tablist">
-                <button class="nav-item active" onclick="showTab('home')" role="tab">🏔️ Home</button>
-                <button class="nav-item" onclick="showTab('business')" role="tab">🏢 Business</button>
-                <button class="nav-item" onclick="showTab('feed')" role="tab">🌐 Business Feed</button>
-                <button class="nav-item" onclick="showTab('mountainshares')" role="tab">💎 MountainShares</button>
-                <button class="nav-item" onclick="showTab('access')" role="tab">🚀 Business Access</button>
+                <button class="nav-item active"   role="tab">🏔️ Home</button>
+                <button class="nav-item"   role="tab">🏢 Business</button>
+                <button class="nav-item"   role="tab">🌐 Business Feed</button>
+                <button class="nav-item"   role="tab">💎 MountainShares</button>
+                <button class="nav-item"   role="tab">🚀 Business Access</button>
             </nav>
         </div>
 
@@ -616,8 +620,8 @@
                         <h2>West Virginia's Digital Business Revolution</h2>
                         <p>Keep money in our communities with MountainShares rewards, professional business tools, and a trusted local marketplace. Free for all businesses and residents.</p>
                         <div class="button-group">
-                            <button class="btn-premium btn-primary" onclick="showTab('access')">🎯 Join The Network</button>
-                            <button class="btn-premium btn-secondary" onclick="showTab('mountainshares')">💎 Learn About MountainShares</button>
+                            <button class="btn-premium btn-primary"  >🎯 Join The Network</button>
+                            <button class="btn-premium btn-secondary"  >💎 Learn About MountainShares</button>
                         </div>
                     </div>
                 </div>
@@ -962,6 +966,10 @@
 
     <!-- Enhanced JavaScript with Network Error Handling -->
     <script>
+document.addEventListener("DOMContentLoaded", function() {
+  const tab = new bootstrap.Tab(document.querySelector("#myTab button"));
+  tab.show();
+});
         console.log('🏔️ BUSINESS NETWORK ACTIVATED 🏔️');
         
         // Simplified MountainShares Integration
@@ -1658,6 +1666,10 @@ let useProxyMode = false;
 </html>
 /* Force redeploy Fri Jun 20 16:01:53 EDT 2025 */
 <script>
+document.addEventListener("DOMContentLoaded", function() {
+  const tab = new bootstrap.Tab(document.querySelector("#myTab button"));
+  tab.show();
+});
 function onTabClick(event) {
   document.querySelectorAll('.tab-panel').forEach(panel => {
     panel.style.display = 'none';
