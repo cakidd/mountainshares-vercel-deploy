@@ -1005,7 +1005,7 @@
 
             // Load wallet data if on MountainShares tab and wallet connected
             if (tabName === 'mountainshares' && currentUserAddress) {
-                loadUserAccountData();
+//                 loadUserAccountData();
             }
         }
 
@@ -1190,15 +1190,15 @@
             }
         }
 
-        async function loadUserAccountData() {
+//         async function loadUserAccountData() {
             try {
                 document.getElementById('loadingBalances').style.display = 'block';
                 document.getElementById('balanceContent').style.display = 'none';
                 
                 // Load token balances
                 const [pmsBalance, emsBalance] = await Promise.all([
-                    msContract.purchasedMSBalances(currentUserAddress),
-                    msContract.earnedMSBalances(currentUserAddress)
+//                     msContract.purchasedMSBalances(currentUserAddress),
+//                     msContract.earnedMSBalances(currentUserAddress)
                 ]);
                 
                 document.getElementById('pmsBalance').textContent = ethers.formatEther(pmsBalance);
@@ -1206,7 +1206,7 @@
                 
                 // Load KYC information
                 try {
-                    const [isVerified, kycLevel] = await msContract.kycStatus(currentUserAddress);
+//                     const [isVerified, kycLevel] = await msContract.kycStatus(currentUserAddress);
                     const kycBadge = document.getElementById('kycBadge');
                     
                     if (isVerified) {
@@ -1221,7 +1221,7 @@
                     const limits = [500, 2500, 10000, 50000];
                     const dailyLimit = isVerified ? limits[Number(kycLevel)] || 500 : 500;
                     
-                    const dailySpent = await msContract.dailySpentUSD(currentUserAddress);
+//                     const dailySpent = await msContract.dailySpentUSD(currentUserAddress);
                     const remaining = dailyLimit - Number(ethers.formatEther(dailySpent));
                     
                     document.getElementById('dailyLimit').textContent = `$${dailyLimit}`;
