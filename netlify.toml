@@ -2,6 +2,9 @@
   publish = "dist"
   command = "mkdir -p dist && cp index.html dist/ && echo 'Commons website built'"
 
+[build.environment]
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"
+
 [functions]
   directory = "netlify/functions"
 
