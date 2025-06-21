@@ -1147,17 +1147,10 @@
                     cancelUrl: window.location.href
                 };
                 
-                console.log('Creating checkout session:', checkoutData);
-                
-                const response = await const formData = new FormData();
-                formData.append('data', JSON.stringify(checkoutData));
-
-                fetch(`${BACKEND_URL}/api/create-checkout-session`, {
+                const response = await fetch(`${BACKEND_URL}/api/create-checkout-session`, {
                     method: 'POST',
-                    body: formData  // No custom headers = no preflight
+                    body: JSON.stringify(checkoutData)
                 });
-                
-                if (!response.ok) {
                     const errorText = await response.text();
                     throw new Error(`HTTP error! status: ${response.status} - ${errorText}`);
                 }
