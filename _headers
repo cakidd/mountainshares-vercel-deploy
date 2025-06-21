@@ -1,5 +1,5 @@
 /*
-  Content-Security-Policy: script-src 'self' 'unsafe-eval' 'unsafe-inline' https://js.stripe.com https://checkout.stripe.com https://www.googletagmanager.com https://tagmanager.google.com https://cdn.jsdelivr.net; https://cdn.jsdelivr.net https://cdn.jsdelivr.net
+  Content-Security-Policy: script-src 'self' 'unsafe-eval' 'unsafe-inline' https://js.stripe.com https://checkout.stripe.com https://www.googletagmanager.com https://tagmanager.google.com https://cdn.jsdelivr.net;
   img-src 'self' data: https://www.googletagmanager.com https://ssl.gstatic.com https://www.gstatic.com;
   connect-src 'self' https://www.googletagmanager.com https://googletagmanager.com https://www.google-analytics.com https://mountainshares-backend-production.up.railway.app;
   style-src 'self' 'unsafe-inline' https://googletagmanager.com https://tagmanager.google.com https://fonts.googleapis.com;
