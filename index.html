@@ -1036,7 +1036,6 @@
                 await window.ethereum.request({
                     method: 'wallet_switchEthereumChain',
                     params: [{ chainId: `0x${CONFIG.ARBITRUM_CHAIN_ID.toString(16)}` }]
-                });
             } catch (switchError) {
                 if (switchError.code === 4902) {
                     await window.ethereum.request({
@@ -1153,8 +1152,6 @@
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(checkoutData)
-                });
-                });
                 
                 if (!response.ok) {
                     const errorText = await response.text();
