@@ -1,25 +1,25 @@
-// REAL Stripe integration for MountainShares (Stack Overflow solution)
+// Real Stripe integration for MountainShares (from search results)
 const stripe = Stripe('pk_test_YOUR_REAL_STRIPE_PUBLISHABLE_KEY_HERE');
 
 async function initiatePurchase() {
   const quantity = parseInt(document.getElementById('ms-quantity').value);
   const walletAddress = document.getElementById('wallet-address').value;
-  
+
   if (!quantity || quantity < 1) {
     showStatus('Please enter a valid quantity (minimum 1 MountainShare)', 'error', 'payment-status');
     return;
   }
-  
+
   if (!walletAddress || !walletAddress.startsWith('0x')) {
     showStatus('Please enter a valid Ethereum wallet address or connect MetaMask', 'error', 'payment-status');
     return;
   }
-  
+
   try {
     document.getElementById('purchase-btn').textContent = 'Creating Real Stripe Session...';
     document.getElementById('purchase-btn').disabled = true;
-    
-    // Create REAL Stripe checkout session (Stack Overflow #68630229 solution)
+
+    // Use real Stripe checkout (from search results [1])
     const { error } = await stripe.redirectToCheckout({
       lineItems: [{
         price_data: {
@@ -43,12 +43,12 @@ async function initiatePurchase() {
         totalPaid: quantity * 1.35
       }
     });
-    
+
     if (error) {
       console.error('Stripe error:', error);
       showStatus('Payment failed: ' + error.message, 'error', 'payment-status');
     }
-    
+
   } catch (error) {
     console.error('❌ Purchase failed:', error);
     showStatus('Payment session creation failed. Please try again.', 'error', 'payment-status');
