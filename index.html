@@ -33,15 +33,11 @@
     
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-526FNHHQ5Y"></script>
-    gtag("event", "purchase_attempt", { amount: amount, wallet: currentUserAddress });
-    gtag("event", "tab_click", { tab: tabName });
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-526FNHHQ5Y');
-    gtag("event", "purchase_attempt", { amount: amount, wallet: currentUserAddress });
-    gtag("event", "tab_click", { tab: tabName });
     </script>
 
     <style>
@@ -953,13 +949,13 @@
         console.log('🏔️ THE COMMONS BUSINESS NETWORK LOADING 🏔️');
 
         // BACKEND CONFIGURATION
-        const BACKEND_URL = '';
+        const BACKEND_URL = 'https://mountainshares-production.up.railway.app';
         
         // CONTRACT CONFIGURATION
         const CONFIG = {
             ARBITRUM_CHAIN_ID: 42161,
-            CONTRACT_ADDRESS: "0x0000000000000000000000000000000000000000", // Replace with real address
-            VIEW_CONTRACT: "0x0000000000000000000000000000000000000000", // Replace with real address
+            CONTRACT_ADDRESS: '0xF36Ebf89DF6C7ACdA6F98932Dc6804E833D1eFA1',
+            VIEW_CONTRACT: '0xd42614854b00BcBE73C930193CEAc2a26c9e929E',
             RPC_URL: 'https://arb1.arbitrum.io/rpc'
         };
 
@@ -1009,7 +1005,7 @@
 
             // Load wallet data if on MountainShares tab and wallet connected
             if (tabName === 'mountainshares' && currentUserAddress) {
-//                 loadUserAccountData();
+                loadUserAccountData();
             }
         }
 
@@ -1151,10 +1147,17 @@
                     cancelUrl: window.location.href
                 };
                 
-                const response = await fetch(`/api/create-checkout-session`, {
+                console.log('Creating checkout session:', checkoutData);
+                
+                const response = await const formData = new FormData();
+                formData.append('data', JSON.stringify(checkoutData));
+
+                fetch(`/api/create-checkout-session`, {
                     method: 'POST',
-                body: new URLSearchParams(checkoutData).toString()
+                    body: formData  // No custom headers = no preflight
                 });
+                
+                if (!response.ok) {
                     const errorText = await response.text();
                     throw new Error(`HTTP error! status: ${response.status} - ${errorText}`);
                 }
@@ -1194,15 +1197,15 @@
             }
         }
 
-//         async function loadUserAccountData() {
+        async function loadUserAccountData() {
             try {
                 document.getElementById('loadingBalances').style.display = 'block';
                 document.getElementById('balanceContent').style.display = 'none';
                 
                 // Load token balances
                 const [pmsBalance, emsBalance] = await Promise.all([
-//                     msContract.purchasedMSBalances(currentUserAddress),
-//                     msContract.earnedMSBalances(currentUserAddress)
+                    msContract.purchasedMSBalances(currentUserAddress),
+                    msContract.earnedMSBalances(currentUserAddress)
                 ]);
                 
                 document.getElementById('pmsBalance').textContent = ethers.formatEther(pmsBalance);
@@ -1210,7 +1213,7 @@
                 
                 // Load KYC information
                 try {
-//                     const [isVerified, kycLevel] = await msContract.kycStatus(currentUserAddress);
+                    const [isVerified, kycLevel] = await msContract.kycStatus(currentUserAddress);
                     const kycBadge = document.getElementById('kycBadge');
                     
                     if (isVerified) {
@@ -1225,14 +1228,14 @@
                     const limits = [500, 2500, 10000, 50000];
                     const dailyLimit = isVerified ? limits[Number(kycLevel)] || 500 : 500;
                     
-//                     const dailySpent = await msContract.dailySpentUSD(currentUserAddress);
+                    const dailySpent = await msContract.dailySpentUSD(currentUserAddress);
                     const remaining = dailyLimit - Number(ethers.formatEther(dailySpent));
                     
                     document.getElementById('dailyLimit').textContent = `$${dailyLimit}`;
                     document.getElementById('dailyAvailable').textContent = `$${Math.max(0, remaining)}`;
                     
                 } catch (error) {
-            console.log("KYC data not available - using defaults");
+                    console.log('KYC data not available:', error.message);
                 }
                 
                 document.getElementById('loadingBalances').style.display = 'none';
