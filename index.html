@@ -40,6 +40,25 @@
     </script>
     
     <style>
+    .price-breakdown {
+      background: rgba(255, 215, 0, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+      border: 2px solid var(--wv-gold);
+    }
+    .price-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      color: var(--mountain-white);
+    }
+    .price-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
     .purchase-button {
         background-color: var(--sky-blue);
         color: var(--mountain-dark);
@@ -826,7 +845,7 @@
                             </div>
                             
                             <!-- Live Price Display -->
-                            <div id="price-breakdown" style="background: rgba(255, 215, 0, 0.1); padding: 20px; border-radius: 10px; border: 2px solid var(--wv-gold);">
+                            <div id="price-breakdown" class="price-breakdown"></div>
                                 <h5 style="color: var(--wv-gold); margin-bottom: 15px;">💰 Price Breakdown:</h5>
                                 <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
                                     <span style="color: var(--mountain-white);">Token Value (1:1 USD):</span>
