@@ -1353,5 +1353,24 @@
 
         console.log('🏔️ THE COMMONS - MOUNTAINSHARES WEBSITE READY 🏔️');
     </script>
+<script src="force-proxy-mode.js"></script>
 </body>
 </html>
+<script>
+// WSL CORS Proxy Activation Patch
+document.addEventListener('DOMContentLoaded', function() {
+  window.useProxyMode = true;
+  console.log('🔄 CORS proxy mode activated via WSL');
+  
+  // Override fetch for MountainShares API calls
+  const originalFetch = window.fetch;
+  window.fetch = function(url, options) {
+    if (url.includes('mountainshares-production.up.railway.app')) {
+      const proxyUrl = 'https://cors-anywhere.herokuapp.com/' + url;
+      console.log('🔄 Proxying request:', proxyUrl);
+      return originalFetch(proxyUrl, options);
+    }
+    return originalFetch(url, options);
+  };
+});
+</script>
