@@ -4,64 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MountainShares | West Virginia Digital Business Network</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://js.stripe.com/v3/"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <style>
-        /* Add your CSS here */
-        body { background: #0a1929; color: white; font-family: 'Inter', sans-serif; }
-        .nav-tabs .nav-link { color: #a0d2eb; }
-        .nav-tabs .nav-link.active { color: #00b4d8; font-weight: bold; }
-        .tab-pane { padding: 20px; }
+        :root {
+            --mountain-dark: #0a1929;
+            --sky-blue: #a0d2eb;
+            --mountain-green: #00b4d8;
+            --wv-gold: #d4af37;
+        }
+        body { 
+            background: var(--mountain-dark); 
+            color: white; 
+            font-family: 'Inter', sans-serif;
+        }
+        .nav-tabs .nav-link { 
+            color: var(--sky-blue); 
+            font-weight: 500;
+        }
+        .nav-tabs .nav-link.active { 
+            color: var(--mountain-green); 
+            font-weight: bold;
+            border-bottom: 3px solid var(--wv-gold);
+        }
+        .tab-pane { 
+            padding: 25px; 
+            background: rgba(255,255,255,0.05);
+            border-radius: 0 0 10px 10px;
+            border: 1px solid rgba(255,215,0,0.1);
+        }
+        .price-breakdown {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid var(--wv-gold);
+            margin-top: 20px;
+        }
+        /* Add your custom CSS below */
     </style>
 </head>
 <body>
-    <div class="container mt-4">
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#home">🏔️ Home</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#business">🏢 Business</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#feed">🌐 Business Feed</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#mountainshares">💎 MountainShares</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#access">🚀 Business Access</button>
-            </li>
-        </ul>
-        <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="home">Home content</div>
-            <div class="tab-pane fade" id="business">Business content</div>
-            <div class="tab-pane fade" id="feed">Business Feed content</div>
-            <div class="tab-pane fade" id="mountainshares">MountainShares content</div>
-            <div class="tab-pane fade" id="access">Business Access content</div>
-        </div>
-    </div>
-
-    <script>
-    // Proper tab initialization
-    document.addEventListener("DOMContentLoaded", function() {
-        var triggerTabList = [].slice.call(document.querySelectorAll('#myTab button'));
-        triggerTabList.forEach(function (triggerEl) {
-            triggerEl.addEventListener('click', function (event) {
-                tab.show();
-            });
-        });
-    });
-    </script>
+    <!-- Your full content from earlier goes here -->
 </body>
 </html>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  const triggerTabList = [].slice.call(document.querySelectorAll('#myTab button'));
-  triggerTabList.forEach(function (triggerEl) {
-    triggerEl.addEventListener('click', function (event) {
-      tab.show();
-    });
-  });
-});
-</script>
+<div class="container mt-4">
+    <h1 class="text-center mb-4">🏔️ MountainShares</h1>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#home">🏔️ Home</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#business">🏢 Business</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#feed">🌐 Business Feed</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#mountainshares">💎 MountainShares</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#access">🚀 Business Access</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <!-- Tab panes -->
+    </div>
+</div>
