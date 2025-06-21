@@ -1149,12 +1149,12 @@
                 
                 console.log('Creating checkout session:', checkoutData);
                 
-                const response = await fetch(`${BACKEND_URL}/api/create-checkout-session`, {
+                const response = await const formData = new FormData();
+                formData.append('data', JSON.stringify(checkoutData));
+
+                fetch(`${BACKEND_URL}/api/create-checkout-session`, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(checkoutData)
+                    body: formData  // No custom headers = no preflight
                 });
                 
                 if (!response.ok) {
