@@ -1,0 +1,16 @@
+[build]
+  publish = "dist"
+  command = "mkdir -p dist && cp index.html dist/ && echo 'Commons website built'"
+
+[functions]
+  directory = "netlify/functions"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
