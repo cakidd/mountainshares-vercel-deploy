@@ -1471,3 +1471,105 @@ window.initiatePurchase = purchaseWithMetaMaskStripe;
 
 console.log('✅ MetaMask-Stripe official integration loaded');
 </script>
+<script>
+// Fix MetaMask persistent connection issue (Ethereum Stack Exchange #165686 solution)
+document.addEventListener('DOMContentLoaded', async function() {
+  console.log('🔍 Checking MetaMask persistent connection state...');
+  
+  if (typeof window.ethereum !== 'undefined') {
+    try {
+      // Check actual MetaMask connection state (not just website state)
+      const accounts = await window.ethereum.request({ 
+        method: 'eth_accounts' 
+      });
+      
+      if (accounts.length > 0) {
+        // MetaMask is persistently connected
+        console.log('✅ MetaMask persistently connected:', accounts[0]);
+        
+        // Update UI to match actual MetaMask state
+        document.getElementById('wallet-address').value = accounts[0];
+        window.selectedAccount = accounts[0];
+        
+        // Force disconnect and reconnect to clear state conflicts
+        try {
+          // Request fresh connection to clear any state conflicts
+          const freshAccounts = await window.ethereum.request({ 
+            method: 'eth_requestAccounts' 
+          });
+          
+          console.log('🔄 MetaMask connection refreshed:', freshAccounts[0]);
+          showStatus('MetaMask connection refreshed!', 'success', 'payment-status');
+          
+        } catch (error) {
+          console.log('⚠️ MetaMask connection refresh failed:', error);
+        }
+      }
+      
+      // Listen for account changes to handle persistent connection issues
+      window.ethereum.on('accountsChanged', function(accounts) {
+        if (accounts.length === 0) {
+          console.log('🔌 MetaMask actually disconnected');
+          document.getElementById('wallet-address').value = '';
+          window.selectedAccount = null;
+          
+          // Clear any persistent connection conflicts
+          localStorage.removeItem('metamask_connected');
+          
+        } else {
+          console.log('🔄 MetaMask account changed (persistent):', accounts[0]);
+          document.getElementById('wallet-address').value = accounts[0];
+          window.selectedAccount = accounts[0];
+          
+          // Store persistent connection state
+          localStorage.setItem('metamask_connected', 'true');
+          localStorage.setItem('metamask_account', accounts[0]);
+        }
+      });
+      
+    } catch (error) {
+      console.log('❌ Error checking MetaMask persistent state:', error);
+    }
+  }
+});
+
+// Override connectWallet to handle persistent connections
+window.connectWallet = async function() {
+  if (typeof window.ethereum !== 'undefined') {
+    try {
+      // Check if already persistently connected
+      const existingAccounts = await window.ethereum.request({ 
+        method: 'eth_accounts' 
+      });
+      
+      if (existingAccounts.length > 0) {
+        // Already connected, just update UI
+        document.getElementById('wallet-address').value = existingAccounts[0];
+        window.selectedAccount = existingAccounts[0];
+        showStatus('MetaMask already connected (persistent)!', 'success', 'payment-status');
+        console.log('✅ Using persistent MetaMask connection:', existingAccounts[0]);
+        return;
+      }
+      
+      // Not connected, request new connection
+      const accounts = await window.ethereum.request({ 
+        method: 'eth_requestAccounts' 
+      });
+      
+      document.getElementById('wallet-address').value = accounts[0];
+      window.selectedAccount = accounts[0];
+      showStatus('MetaMask connected successfully!', 'success', 'payment-status');
+      console.log('✅ New MetaMask connection established:', accounts[0]);
+      
+    } catch (error) {
+      console.error('❌ Failed to connect MetaMask:', error);
+      showStatus('Failed to connect MetaMask. Please try again.', 'error', 'payment-status');
+    }
+  } else {
+    showStatus('MetaMask not detected. Please install MetaMask.', 'error', 'payment-status');
+    window.open('https://metamask.io/download/', '_blank');
+  }
+};
+
+console.log('✅ MetaMask persistent connection handler loaded');
+</script>
