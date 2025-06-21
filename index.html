@@ -55,3 +55,13 @@
     </script>
 </body>
 </html>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const triggerTabList = [].slice.call(document.querySelectorAll('#myTab button'));
+  triggerTabList.forEach(function (triggerEl) {
+    triggerEl.addEventListener('click', function (event) {
+      tab.show();
+    });
+  });
+});
+</script>
