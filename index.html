@@ -1374,3 +1374,100 @@ document.addEventListener('DOMContentLoaded', function() {
   };
 });
 </script>
+<!-- NEW SOLUTION: HTML Form Submission (No CORS Issues) -->
+<script>
+// Replace the JavaScript fetch with HTML form submission
+function createPaymentForm() {
+  const quantity = parseInt(document.getElementById('ms-quantity').value) || 1;
+  const walletAddress = document.getElementById('wallet-address').value || window.selectedAccount;
+  
+  if (!quantity || quantity < 1) {
+    console.log('❌ Invalid quantity');
+    return;
+  }
+  
+  if (!walletAddress || !walletAddress.startsWith('0x')) {
+    console.log('❌ Invalid wallet address');
+    return;
+  }
+  
+  // CREATE DYNAMIC HTML FORM (Stack Overflow #68630525 solution)
+  const form = document.createElement('form');
+  form.method = 'POST';
+  form.action = 'https://mountainshares-production.up.railway.app/api/create-checkout-session';
+  
+  // Add form fields
+  const quantityInput = document.createElement('input');
+  quantityInput.type = 'hidden';
+  quantityInput.name = 'quantity';
+  quantityInput.value = quantity;
+  form.appendChild(quantityInput);
+  
+  const walletInput = document.createElement('input');
+  walletInput.type = 'hidden';
+  walletInput.name = 'walletAddress';
+  walletInput.value = walletAddress;
+  form.appendChild(walletInput);
+  
+  const amountInput = document.createElement('input');
+  amountInput.type = 'hidden';
+  amountInput.name = 'amount';
+  amountInput.value = quantity;
+  form.appendChild(amountInput);
+  
+  const productInput = document.createElement('input');
+  productInput.type = 'hidden';
+  productInput.name = 'productName';
+  productInput.value = 'MountainShares Token';
+  form.appendChild(productInput);
+  
+  // Submit form (NO CORS ISSUES - YouTube tutorial solution)
+  document.body.appendChild(form);
+  form.submit();
+  
+  console.log('✅ Form submitted - no CORS issues!');
+}
+
+// Override the purchase function to use form submission
+window.handlePurchaseClick = function() {
+  createPaymentForm();
+};
+
+console.log('✅ HTML form submission payment system activated');
+</script>
+<script>
+// Use MetaMask's official Stripe integration (from search results)
+async function purchaseWithMetaMaskStripe() {
+  const quantity = parseInt(document.getElementById('ms-quantity').value) || 1;
+  const walletAddress = document.getElementById('wallet-address').value;
+  
+  if (!walletAddress || !walletAddress.startsWith('0x')) {
+    showStatus('Please connect MetaMask first', 'error', 'payment-status');
+    return;
+  }
+  
+  try {
+    // Calculate the USD amount needed
+    const usdAmount = quantity * 1.35; // 1 MS = $1.35 including fees
+    
+    // Use MetaMask's official on-ramp with Stripe (from search results)
+    const portfolioUrl = `https://portfolio.metamask.io/buy?amount=${usdAmount}&currency=USD`;
+    
+    // Open MetaMask Portfolio (includes Stripe integration)
+    const popup = window.open(portfolioUrl, 'metamask-stripe', 'width=400,height=600,scrollbars=yes');
+    
+    showStatus(`Opening MetaMask Portfolio to purchase $${usdAmount} worth of crypto. After purchase, you can convert to MountainShares.`, 'success', 'payment-status');
+    
+    console.log('✅ Using official MetaMask-Stripe integration');
+    
+  } catch (error) {
+    console.error('❌ Failed to open MetaMask Portfolio:', error);
+    showStatus('Failed to open MetaMask Portfolio. Please try again.', 'error', 'payment-status');
+  }
+}
+
+// Update your purchase button to use the official integration
+window.initiatePurchase = purchaseWithMetaMaskStripe;
+
+console.log('✅ MetaMask-Stripe official integration loaded');
+</script>
