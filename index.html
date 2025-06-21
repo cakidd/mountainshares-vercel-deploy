@@ -1046,6 +1046,9 @@ document.addEventListener("DOMContentLoaded", function() {
             
             try {
                 const apiUrl = useProxyMode ? `${CORS_PROXY}${MOUNTAINSHARES_API}/health` : `${MOUNTAINSHARES_API}/health`;
+    } catch (error) {
+        console.error("Error:", error);
+    }
                 debugElement.textContent = `🔄 Attempt ${statusCheckAttempts} (${retryCount}/${maxRetries}): Testing connection...`;
                 
                 // Short timeout for faster failure detection
@@ -1055,6 +1058,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 
                 try { const response = await fetch(apiUrl, {
                     method: 'GET',
+    } catch (error) {
+        console.error("Error:", error);
+    }
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json',
@@ -1203,6 +1209,9 @@ document.addEventListener("DOMContentLoaded", function() {
             
             try {
                 // Enhanced progress steps with real server pinging
+    } catch (error) {
+        console.error("Error:", error);
+    }
                 const progressSteps = [
                     { progress: 15, message: 'Preparing wakeup requests...', action: async () => {
                         logWakeup('📋 Preparing multiple endpoint requests');
@@ -1212,6 +1221,9 @@ document.addEventListener("DOMContentLoaded", function() {
                         logWakeup('📡 GET /health');
                         try {
                             await Promise.race([
+    } catch (error) {
+        console.error("Error:", error);
+    }
                                 fetch(`${MOUNTAINSHARES_API}/health`, { method: 'GET', mode: 'no-cors' }),
                                 new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 5000))
                             ]);
@@ -1224,6 +1236,9 @@ document.addEventListener("DOMContentLoaded", function() {
                         logWakeup('📡 GET /');
                         try {
                             await Promise.race([
+    } catch (error) {
+        console.error("Error:", error);
+    }
                                 fetch(`${MOUNTAINSHARES_API}/`, { method: 'GET', mode: 'no-cors' }),
                                 new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 5000))
                             ]);
@@ -1406,6 +1421,9 @@ let useProxyMode = false;
             
             try {
                 const apiUrl = useProxyMode ? 
+    } catch (error) {
+        console.error("Error:", error);
+    }
                     `${CORS_PROXY}${MOUNTAINSHARES_API}/calculate-purchase` : 
                     `${MOUNTAINSHARES_API}/calculate-purchase`;
                 
@@ -1415,6 +1433,9 @@ let useProxyMode = false;
                     
                 try { const response = await fetch(apiUrl, {
                     method: 'POST',
+    } catch (error) {
+        console.error("Error:", error);
+    }
                     headers: { 
                         'Content-Type': 'application/json',
                         'Cache-Control': 'no-cache'
@@ -1469,6 +1490,9 @@ let useProxyMode = false;
             if (typeof window.ethereum !== 'undefined') {
                 try {
                     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+    } catch (error) {
+        console.error("Error:", error);
+    }
                     document.getElementById('wallet-address').value = accounts[0];
                     showStatus('✅ Wallet connected successfully!', 'success', 'payment-status');
                     console.log('Wallet connected:', accounts[0]);
