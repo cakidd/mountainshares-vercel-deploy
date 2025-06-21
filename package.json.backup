@@ -1,0 +1,54 @@
+{
+  "name": "mountainshares-smart-contract",
+  "version": "1.0.0",
+  "description": "MountainShares community currency smart contract for Appalachian economic resilience",
+  "main": "index.js",
+  "scripts": {
+    "compile": "NODE_OPTIONS='--max-old-space-size=8192' hardhat compile",
+    "test": "NODE_OPTIONS='--max-old-space-size=8192' hardhat test",
+    "quick-test": "npm run compile && echo 'Compilation successful!'",
+    "verify-contract": "node scripts/verify-deployment.js",
+    "deploy-local": "hardhat run scripts/deploy.js --network localhost",
+    "check-wsl": "echo 'WSL Memory Check:' && free -h",
+    "clean": "hardhat clean",
+    "node": "NODE_OPTIONS='--max-old-space-size=8192' hardhat node"
+  },
+  "keywords": [
+    "solidity",
+    "ethereum",
+    "smart-contracts",
+    "appalachia",
+    "community-currency"
+  ],
+  "author": "Harmony for Hope, Inc.",
+  "license": "MIT",
+  "dependencies": {
+    "@chainlink/contracts": "^0.6.1",
+    "@openzeppelin/contracts": "^4.9.3",
+    "@openzeppelin/contracts-upgradeable": "^4.9.3",
+    "@stripe/react-stripe-js": "^3.7.0",
+    "@stripe/stripe-js": "^7.3.1",
+    "axios": "^1.10.0",
+    "compression": "^1.8.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "next": "^15.3.4",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "stripe": "^18.2.1",
+    "winston": "^3.17.0"
+  },
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@nomiclabs/hardhat-waffle": "^2.0.6",
+    "chai": "^4.3.7",
+    "ethereum-waffle": "^4.0.10",
+    "ethers": "^5.7.2",
+    "hardhat": "^2.17.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

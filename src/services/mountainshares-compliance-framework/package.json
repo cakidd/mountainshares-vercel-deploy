@@ -12,17 +12,24 @@
     "node": "npx hardhat node"
   },
   "dependencies": {
-    "@openzeppelin/contracts": "^4.9.3",
-    "hardhat": "^2.17.1",
     "@nomiclabs/hardhat-ethers": "^2.2.3",
-    "ethers": "^5.7.2"
+    "@openzeppelin/contracts": "^4.9.3",
+    "ethers": "^5.7.2",
+    "hardhat": "^2.17.1"
   },
   "devDependencies": {
+    "@nomicfoundation/hardhat-verify": "^2.0.14",
     "@nomiclabs/hardhat-waffle": "^2.0.6",
-    "ethereum-waffle": "^4.0.10",
-    "chai": "^4.3.7"
+    "chai": "^4.3.7",
+    "ethereum-waffle": "^4.0.10"
   },
-  "keywords": ["ethereum", "smart-contracts", "emergency-response", "compliance", "mountainshares"],
+  "keywords": [
+    "ethereum",
+    "smart-contracts",
+    "emergency-response",
+    "compliance",
+    "mountainshares"
+  ],
   "author": "MountainShares Team",
   "license": "MIT"
 }

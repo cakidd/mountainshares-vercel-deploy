@@ -1,0 +1,29 @@
+Checking for new versions...
+
+Getting ready...
+Ready! You are using Stripe API Version [2023-10-16]. Your webhook signing secret is whsec_a05592bbb922e4844f998da2e852be61ab1fde1531a9b9152bee713a6be22db5 (^C to quit)
+2025-06-21 13:04:38   --> payment_intent.created [evt_3RcUqIJwby4IAnqF1tS9eWFy]
+2025-06-21 13:04:38  <--  [200] POST http://localhost:3000/api/webhooks/stripe [evt_3RcUqIJwby4IAnqF1tS9eWFy]
+2025-06-21 13:06:44   --> payment_intent.created [evt_3RcUsLJwby4IAnqF07tIVSrp]
+2025-06-21 13:06:44  <--  [200] POST http://localhost:3000/api/webhooks/stripe [evt_3RcUsLJwby4IAnqF07tIVSrp]
+2025-06-21 13:11:32   --> payment_intent.created [evt_3RcUwzJwby4IAnqF06NkLh13]
+2025-06-21 13:11:32  <--  [200] POST http://localhost:3000/api/webhooks/stripe [evt_3RcUwzJwby4IAnqF06NkLh13]
+2025-06-21 13:12:04   --> payment_intent.created [evt_3RcUxUJwby4IAnqF1lgFaijh]
+2025-06-21 13:12:04  <--  [200] POST http://localhost:3000/api/webhooks/stripe [evt_3RcUxUJwby4IAnqF1lgFaijh]
+2025-06-21 13:12:04   --> payment_intent.created [evt_3RcUxUJwby4IAnqF0CkgARlo]
+2025-06-21 13:12:04  <--  [200] POST http://localhost:3000/api/webhooks/stripe [evt_3RcUxUJwby4IAnqF0CkgARlo]
+2025-06-21 13:12:27   --> payment_intent.succeeded [evt_3RcUxUJwby4IAnqF13jcGZcD]
+2025-06-21 13:12:27   --> charge.succeeded [evt_3RcUxUJwby4IAnqF15pbqRbF]
+2025-06-21 13:12:27  <--  [200] POST http://localhost:3000/api/webhooks/stripe [evt_3RcUxUJwby4IAnqF15pbqRbF]
+2025-06-21 13:12:27  <--  [200] POST http://localhost:3000/api/webhooks/stripe [evt_3RcUxUJwby4IAnqF13jcGZcD]
+2025-06-21 13:12:31   --> charge.updated [evt_3RcUxUJwby4IAnqF1FSurGex]
+2025-06-21 13:12:31  <--  [200] POST http://localhost:3000/api/webhooks/stripe [evt_3RcUxUJwby4IAnqF1FSurGex]
+time="Sat, 21 Jun 2025 14:05:29 EDT" level=error msg="Error when writing ping message: websocket: close sent" prefix=websocket.Client.writePump
+2025-06-21 14:07:49   --> payment_intent.created [evt_3RcVpRJwby4IAnqF1DbEgsKk]
+2025-06-21 14:07:49  <--  [200] POST http://localhost:3000/api/webhooks/stripe [evt_3RcVpRJwby4IAnqF1DbEgsKk]
+time="Sat, 21 Jun 2025 14:25:55 EDT" level=error msg="Error when writing ping message: websocket: close sent" prefix=websocket.Client.writePump
+time="Sat, 21 Jun 2025 14:30:01 EDT" level=error msg="Error when writing ping message: websocket: close sent" prefix=websocket.Client.writePump
+time="Sat, 21 Jun 2025 16:00:23 EDT" level=error msg="Error when writing ping message: websocket: close sent" prefix=websocket.Client.writePump
+time="Sat, 21 Jun 2025 16:20:54 EDT" level=error msg="Error when writing ping message: websocket: close sent" prefix=websocket.Client.writePump
+time="Sat, 21 Jun 2025 16:49:46 EDT" level=error msg="Error when writing ping message: websocket: close sent" prefix=websocket.Client.writePump
+time="Sat, 21 Jun 2025 17:26:51 EDT" level=error msg="Error when writing ping message: websocket: close sent" prefix=websocket.Client.writePump

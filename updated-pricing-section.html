@@ -1,0 +1,37 @@
+<!-- Enhanced Price Breakdown with Regional Banking Fee -->
+<div id="price-breakdown" style="background: rgba(255, 215, 0, 0.1); padding: 20px; border-radius: 10px; border: 2px solid var(--wv-gold);">
+  <h5 style="color: var(--wv-gold); margin-bottom: 15px;">Price Breakdown</h5>
+  
+  <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+    <span style="color: var(--mountain-white);">Token Value (1:1 USD)</span>
+    <span style="color: var(--mountain-white);" id="token-value">5.00</span>
+  </div>
+  
+  <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+    <span style="color: var(--mountain-white);">Stripe Processing Fee</span>
+    <span style="color: var(--mountain-white);" id="stripe-fee">0.45</span>
+  </div>
+  
+  <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 12px;">
+    <span style="color: rgba(255, 255, 255, 0.7);">└ Regional Banking Fee (0.0111%)</span>
+    <span style="color: rgba(255, 255, 255, 0.7);" id="regional-fee">0.0006</span>
+  </div>
+  
+  <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+    <span style="color: var(--mountain-white);">MountainShares Fee (2%)</span>
+    <span style="color: var(--mountain-white);" id="ms-fee">0.10</span>
+  </div>
+  
+  <hr style="border: 1px solid var(--wv-gold); margin: 15px 0;">
+  
+  <div style="display: flex; justify-content: space-between; font-size: 18px; font-weight: bold;">
+    <span style="color: var(--wv-gold);">Total You Pay</span>
+    <span style="color: var(--wv-gold);" id="total-price">5.55</span>
+  </div>
+  
+  <div style="margin-top: 10px; padding: 10px; background: rgba(0, 102, 255, 0.1); border-radius: 8px;">
+    <p style="color: var(--sky-blue); font-size: 12px; margin: 0; text-align: center;">
+      <strong>Note:</strong> Fees are rounded up to ensure accurate accounting for regional banking charges.
+    </p>
+  </div>
+</div>

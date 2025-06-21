@@ -1,8 +1,10 @@
 {
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/index.js"
+  "functions": {
+    "app/api/**": {
+      "maxDuration": 300
+    },
+    "pages/api/**": {
+      "maxDuration": 300
     }
-  ]
+  }
 }

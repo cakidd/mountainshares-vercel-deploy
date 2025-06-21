@@ -1,0 +1,41 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/MountainShares.sol": {
+      "content": "// YOUR MAIN CONTRACT CODE HERE"
+    },
+    "@openzeppelin/contracts/token/ERC20/ERC20.sol": {
+      "content": "// OPENZEPPELIN ERC20 SOURCE CODE"
+    },
+    "@openzeppelin/contracts/access/AccessControl.sol": {
+      "content": "// OPENZEPPELIN ACCESS CONTROL SOURCE CODE"
+    },
+    "@openzeppelin/contracts/utils/Context.sol": {
+      "content": "// OPENZEPPELIN CONTEXT SOURCE CODE"
+    }
+  },
+  "settings": {
+    "metadata": {
+      "bytecodeHash": "ipfs"
+    },
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "evmVersion": "paris"
+  }
+}

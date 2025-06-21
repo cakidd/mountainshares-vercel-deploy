@@ -1,0 +1,32 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/MountainShares.sol": {
+      "content": "// PASTE YOUR COMPLETE MOUNTAINSHARES CONTRACT SOURCE CODE HERE\n// Include all SPDX license, pragma, imports, and contract code\n// Example:\n// SPDX-License-Identifier: MIT\n// pragma solidity ^0.8.20;\n// import \"@openzeppelin/contracts/token/ERC20/ERC20.sol\";\n// import \"@openzeppelin/contracts/access/AccessControl.sol\";\n// contract MountainShares is ERC20, AccessControl {\n//   // Your complete contract code here\n// }"
+    }
+  },
+  "settings": {
+    "metadata": {
+      "bytecodeHash": "ipfs"
+    },
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "evmVersion": "paris"
+  }
+}

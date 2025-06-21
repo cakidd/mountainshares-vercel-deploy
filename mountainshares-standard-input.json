@@ -1,0 +1,32 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/MountainShares.sol": {
+      "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.20;\n\nimport \"@openzeppelin/contracts/token/ERC20/ERC20.sol\";\nimport \"@openzeppelin/contracts/access/AccessControl.sol\";\nimport \"@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol\";\n\ncontract MountainShares is ERC20, AccessControl, ERC20Permit {\n    bytes32 public constant MINTER_ROLE = keccak256(\"MINTER_ROLE\");\n\n    constructor(address defaultAdmin, address minter)\n        ERC20(\"MountainShares\", \"MS\")\n        ERC20Permit(\"MountainShares\")\n    {\n        _grantRole(DEFAULT_ADMIN_ROLE, defaultAdmin);\n        _grantRole(MINTER_ROLE, minter);\n    }\n\n    function mint(address to, uint256 amount) public onlyRole(MINTER_ROLE) {\n        _mint(to, amount);\n    }\n}"
+    }
+  },
+  "settings": {
+    "metadata": {
+      "bytecodeHash": "ipfs"
+    },
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "evmVersion": "paris"
+  }
+}

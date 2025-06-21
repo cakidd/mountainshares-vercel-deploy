@@ -1,0 +1,95 @@
+  ▲ Next.js 14.2.30
+  - Local:        http://localhost:3000
+  - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1079ms
+ ✓ Compiled / in 268ms (261 modules)
+ GET /_next/static/webpack/5f1658e3c0cb7212.webpack.hot-update.json 404 in 333ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET / 200 in 335ms
+ GET / 200 in 7ms
+ ✓ Compiled /api/health in 93ms (66 modules)
+ GET /api/health 200 in 109ms
+ GET /api/health 200 in 2ms
+ GET / 200 in 13ms
+ GET /api/health 200 in 2ms
+ GET /api/health 200 in 2ms
+ GET /api/health 200 in 2ms
+ ✓ Compiled /api/create-payment-intent in 67ms (70 modules)
+💳 [2025-06-21T18:07:48.770Z] Payment intent request
+💳 Creating payment: $1.36 for commons-integration-test-final
+✅ Payment intent created: pi_3RcVpRJwby4IAnqF1dwP6E6w
+ POST /api/create-payment-intent 200 in 611ms
+ ✓ Compiled /api/webhooks/stripe in 53ms (74 modules)
+🎣 [2025-06-21T18:07:49.606Z] Webhook: payment_intent.created (evt_3RcVpRJwby4IAnqF1DbEgsKk)
+🤷 [2025-06-21T18:07:49.606Z] Unhandled event type: payment_intent.created
+ POST /api/webhooks/stripe 200 in 174ms
+ ✓ Compiled in 331ms (259 modules)
+   Reload env: .env
+ ✓ Compiled in 84ms (259 modules)
+ GET / 200 in 24ms
+   Reload env: .env
+ ⨯ Module not found: Error: Can't resolve './node_modules/next/dist/client/next-dev.js' in '/home/aubre/mountainshares-vercel-deploy'
+Error: Cannot find module 'next/dist/pages/_app'
+Require stack:
+- /home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/build/entries.js
+- /home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/server/dev/hot-reloader-webpack.js
+- /home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/server/lib/router-server.js
+- /home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/server/lib/start-server.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1140:15)
+    at /home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/server/require-hook.js:55:36
+    at Function.resolve (node:internal/modules/helpers:188:19)
+    at getPageFilePath (/home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/build/entries.js:181:20)
+    at /home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/build/entries.js:403:34
+    at Array.map (<anonymous>)
+    at createEntrypoints (/home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/build/entries.js:549:50)
+    at HotReloaderWebpack.buildFallbackError (/home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/server/dev/hot-reloader-webpack.js:573:64)
+    at async DevBundlerService.getFallbackErrorComponents (/home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/server/lib/dev-bundler-service.js:25:9)
+    at async DevServer.getFallbackErrorComponents (/home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/server/dev/next-dev-server.js:593:9)
+    at async DevServer.renderErrorToResponseImpl (/home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/server/base-server.js:2203:40)
+    at async DevServer.pipeImpl (/home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/server/next-server.js:231:21)
+    at async DevServer.handleRequestImpl (/home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/server/base-server.js:818:17)
+    at async /home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/server/dev/next-dev-server.js:339:20 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/build/entries.js',
+    '/home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/server/dev/hot-reloader-webpack.js',
+    '/home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js',
+    '/home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/server/lib/router-server.js',
+    '/home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/server/lib/start-server.js'
+  ]
+}
+Error: Cannot find module 'next/dist/pages/_app'
+Require stack:
+- /home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/build/entries.js
+- /home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/server/dev/hot-reloader-webpack.js
+- /home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/server/lib/router-server.js
+- /home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/server/lib/start-server.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1140:15)
+    at /home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/server/require-hook.js:55:36
+    at Function.resolve (node:internal/modules/helpers:188:19)
+    at getPageFilePath (/home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/build/entries.js:181:20)
+    at /home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/build/entries.js:403:34
+    at Array.map (<anonymous>)
+    at createEntrypoints (/home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/build/entries.js:549:50)
+    at HotReloaderWebpack.buildFallbackError (/home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/server/dev/hot-reloader-webpack.js:573:64)
+    at async DevBundlerService.getFallbackErrorComponents (/home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/server/lib/dev-bundler-service.js:25:9)
+    at async DevServer.getFallbackErrorComponents (/home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/server/dev/next-dev-server.js:593:9)
+    at async DevServer.renderErrorToResponseImpl (/home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/server/base-server.js:2203:40)
+    at async pipe.req.req (/home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/server/base-server.js:2056:30)
+    at async DevServer.pipeImpl (/home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/server/base-server.js:922:25)
+    at async /home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/trace/trace.js:154:20) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/build/entries.js',
+    '/home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/server/dev/hot-reloader-webpack.js',
+    '/home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js',
+    '/home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/server/lib/router-server.js',
+    '/home/aubre/mountainshares-vercel-deploy/node_modules/next/dist/server/lib/start-server.js'
+  ]
+}
