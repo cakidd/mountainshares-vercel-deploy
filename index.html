@@ -1149,12 +1149,11 @@
                 
                 console.log('Creating checkout session:', checkoutData);
                 
-                const formData = new FormData();
-                formData.append("data", JSON.stringify(checkoutData));
-                
                 const response = await fetch(`/api/create-checkout-session`, {
                     method: "POST",
-                    body: formData
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(checkoutData)
+                });
                 });
                 
                 if (!response.ok) {
