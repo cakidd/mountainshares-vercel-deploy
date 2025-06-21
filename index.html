@@ -35,7 +35,6 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-526FNHHQ5Y"></script>
     <script>
 document.addEventListener("DOMContentLoaded", function() {
-  const tab = new bootstrap.Tab(document.querySelector("#myTab button"));
   tab.show();
 });
         window.dataLayer = window.dataLayer || [];
@@ -967,7 +966,6 @@ document.addEventListener("DOMContentLoaded", function() {
     <!-- Enhanced JavaScript with Network Error Handling -->
     <script>
 document.addEventListener("DOMContentLoaded", function() {
-  const tab = new bootstrap.Tab(document.querySelector("#myTab button"));
   tab.show();
 });
         console.log('🏔️ BUSINESS NETWORK ACTIVATED 🏔️');
@@ -976,20 +974,6 @@ document.addEventListener("DOMContentLoaded", function() {
         const MOUNTAINSHARES_API = 'https://mountainshares-backend-production.up.railway.app';
         let stripe = null;
 
-        function showTab(tabName) {
-            // Hide all tabs
-            const contents = document.querySelectorAll('.content-tab');
-            contents.forEach(content => content.classList.remove('active'));
-
-            // Remove active from nav
-            const tabs = document.querySelectorAll('.nav-item');
-            tabs.forEach(tab => tab.classList.remove('active'));
-
-            // Show selected tab
-            const targetTab = document.getElementById(tabName);
-            if (targetTab) {
-                targetTab.classList.add('active');
-            }
 
             // Activate nav item
             const tabNames = ['home', 'business', 'feed', 'mountainshares', 'access'];
@@ -1667,7 +1651,6 @@ let useProxyMode = false;
 /* Force redeploy Fri Jun 20 16:01:53 EDT 2025 */
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-  const tab = new bootstrap.Tab(document.querySelector("#myTab button"));
   tab.show();
 });
 function onTabClick(event) {
@@ -1711,3 +1694,11 @@ document.querySelectorAll('.tab-button').forEach(button => {
     <div class="tab-pane fade" id="access" role="tabpanel">Business Access content</div>
   </div>
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var triggerTabList = [].slice.call(document.querySelectorAll('#myTab button'));
+  triggerTabList.forEach(function (triggerEl) {
+    new bootstrap.Tab(triggerEl).show();
+  });
+});
+</script>
