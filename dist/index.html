@@ -33,6 +33,26 @@
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-526FNHHQ5Y"></script>
     <script>
+// ESSENTIAL FUNCTIONS - MUST LOAD FIRST
+function showTab(tabName) {
+    console.log("Switching to tab:", tabName);
+    try {
+        const contents = document.querySelectorAll(".content-tab");
+        contents.forEach(content => content.classList.remove("active"));
+        const navItems = document.querySelectorAll(".nav-item");
+        navItems.forEach(item => item.classList.remove("active"));
+        const targetTab = document.getElementById(tabName);
+        if (targetTab) targetTab.classList.add("active");
+        const targetNav = document.querySelector(`[onclick*="${tabName}"]`);
+        if (targetNav) targetNav.classList.add("active");
+    } catch (e) {
+        console.log("Tab switching error:", e);
+    }
+}
+
+// BACKEND CONFIGURATION
+const MOUNTAINSHARES_BACKEND_URL = "https://mountainshares-backend-production.up.railway.app";
+console.log("Backend URL:", MOUNTAINSHARES_BACKEND_URL);
 function showTab(tabName) {
     console.log("Switching to tab:", tabName);
     const contents = document.querySelectorAll(".content-tab");
@@ -958,6 +978,26 @@ function showTab(tabName) {
     </div>
 
     <script>
+// ESSENTIAL FUNCTIONS - MUST LOAD FIRST
+function showTab(tabName) {
+    console.log("Switching to tab:", tabName);
+    try {
+        const contents = document.querySelectorAll(".content-tab");
+        contents.forEach(content => content.classList.remove("active"));
+        const navItems = document.querySelectorAll(".nav-item");
+        navItems.forEach(item => item.classList.remove("active"));
+        const targetTab = document.getElementById(tabName);
+        if (targetTab) targetTab.classList.add("active");
+        const targetNav = document.querySelector(`[onclick*="${tabName}"]`);
+        if (targetNav) targetNav.classList.add("active");
+    } catch (e) {
+        console.log("Tab switching error:", e);
+    }
+}
+
+// BACKEND CONFIGURATION
+const MOUNTAINSHARES_BACKEND_URL = "https://mountainshares-backend-production.up.railway.app";
+console.log("Backend URL:", MOUNTAINSHARES_BACKEND_URL);
 function showTab(tabName) {
     console.log("Switching to tab:", tabName);
     const contents = document.querySelectorAll(".content-tab");
@@ -1044,18 +1084,8 @@ function showTab(tabName) {
                 document.getElementById('connectWallet').textContent = 'Connecting...';
 
                 await window.ethereum.request({ method: 'eth_requestAccounts' });
-                await switchToArbitrumNetwork();
-                await connectToWallet();
-                
-            } catch (error) {
                 console.error('Wallet connection failed:', error);
 
-        async function switchToArbitrumNetwork() {
-            try {
-                await window.ethereum.request({
-                    method: 'wallet_switchEthereumChain',
-                    params: [{ chainId: `0x${CONFIG.ARBITRUM_CHAIN_ID.toString(16)}` }]
-                });
             } catch (switchError) {
                 if (switchError.code === 4902) {
                     await window.ethereum.request({
@@ -1376,6 +1406,26 @@ function showTab(tabName) {
 </body>
 </html>
 <script>
+// ESSENTIAL FUNCTIONS - MUST LOAD FIRST
+function showTab(tabName) {
+    console.log("Switching to tab:", tabName);
+    try {
+        const contents = document.querySelectorAll(".content-tab");
+        contents.forEach(content => content.classList.remove("active"));
+        const navItems = document.querySelectorAll(".nav-item");
+        navItems.forEach(item => item.classList.remove("active"));
+        const targetTab = document.getElementById(tabName);
+        if (targetTab) targetTab.classList.add("active");
+        const targetNav = document.querySelector(`[onclick*="${tabName}"]`);
+        if (targetNav) targetNav.classList.add("active");
+    } catch (e) {
+        console.log("Tab switching error:", e);
+    }
+}
+
+// BACKEND CONFIGURATION
+const MOUNTAINSHARES_BACKEND_URL = "https://mountainshares-backend-production.up.railway.app";
+console.log("Backend URL:", MOUNTAINSHARES_BACKEND_URL);
 function showTab(tabName) {
     console.log("Switching to tab:", tabName);
     const contents = document.querySelectorAll(".content-tab");
@@ -1406,6 +1456,26 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 <!-- NEW SOLUTION: HTML Form Submission (No CORS Issues) -->
 <script>
+// ESSENTIAL FUNCTIONS - MUST LOAD FIRST
+function showTab(tabName) {
+    console.log("Switching to tab:", tabName);
+    try {
+        const contents = document.querySelectorAll(".content-tab");
+        contents.forEach(content => content.classList.remove("active"));
+        const navItems = document.querySelectorAll(".nav-item");
+        navItems.forEach(item => item.classList.remove("active"));
+        const targetTab = document.getElementById(tabName);
+        if (targetTab) targetTab.classList.add("active");
+        const targetNav = document.querySelector(`[onclick*="${tabName}"]`);
+        if (targetNav) targetNav.classList.add("active");
+    } catch (e) {
+        console.log("Tab switching error:", e);
+    }
+}
+
+// BACKEND CONFIGURATION
+const MOUNTAINSHARES_BACKEND_URL = "https://mountainshares-backend-production.up.railway.app";
+console.log("Backend URL:", MOUNTAINSHARES_BACKEND_URL);
 function showTab(tabName) {
     console.log("Switching to tab:", tabName);
     const contents = document.querySelectorAll(".content-tab");
@@ -1477,6 +1547,26 @@ window.handlePurchaseClick = function() {
 console.log('✅ HTML form submission payment system activated');
 </script>
 <script>
+// ESSENTIAL FUNCTIONS - MUST LOAD FIRST
+function showTab(tabName) {
+    console.log("Switching to tab:", tabName);
+    try {
+        const contents = document.querySelectorAll(".content-tab");
+        contents.forEach(content => content.classList.remove("active"));
+        const navItems = document.querySelectorAll(".nav-item");
+        navItems.forEach(item => item.classList.remove("active"));
+        const targetTab = document.getElementById(tabName);
+        if (targetTab) targetTab.classList.add("active");
+        const targetNav = document.querySelector(`[onclick*="${tabName}"]`);
+        if (targetNav) targetNav.classList.add("active");
+    } catch (e) {
+        console.log("Tab switching error:", e);
+    }
+}
+
+// BACKEND CONFIGURATION
+const MOUNTAINSHARES_BACKEND_URL = "https://mountainshares-backend-production.up.railway.app";
+console.log("Backend URL:", MOUNTAINSHARES_BACKEND_URL);
 function showTab(tabName) {
     console.log("Switching to tab:", tabName);
     const contents = document.querySelectorAll(".content-tab");
@@ -1524,6 +1614,26 @@ window.initiatePurchase = purchaseWithMetaMaskStripe;
 console.log('✅ MetaMask-Stripe official integration loaded');
 </script>
 <script>
+// ESSENTIAL FUNCTIONS - MUST LOAD FIRST
+function showTab(tabName) {
+    console.log("Switching to tab:", tabName);
+    try {
+        const contents = document.querySelectorAll(".content-tab");
+        contents.forEach(content => content.classList.remove("active"));
+        const navItems = document.querySelectorAll(".nav-item");
+        navItems.forEach(item => item.classList.remove("active"));
+        const targetTab = document.getElementById(tabName);
+        if (targetTab) targetTab.classList.add("active");
+        const targetNav = document.querySelector(`[onclick*="${tabName}"]`);
+        if (targetNav) targetNav.classList.add("active");
+    } catch (e) {
+        console.log("Tab switching error:", e);
+    }
+}
+
+// BACKEND CONFIGURATION
+const MOUNTAINSHARES_BACKEND_URL = "https://mountainshares-backend-production.up.railway.app";
+console.log("Backend URL:", MOUNTAINSHARES_BACKEND_URL);
 function showTab(tabName) {
     console.log("Switching to tab:", tabName);
     const contents = document.querySelectorAll(".content-tab");
