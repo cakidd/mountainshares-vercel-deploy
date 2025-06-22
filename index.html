@@ -33,6 +33,17 @@
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-526FNHHQ5Y"></script>
     <script>
+function showTab(tabName) {
+    console.log("Switching to tab:", tabName);
+    const contents = document.querySelectorAll(".content-tab");
+    contents.forEach(content => content.classList.remove("active"));
+    const navItems = document.querySelectorAll(".nav-item");
+    navItems.forEach(item => item.classList.remove("active"));
+    const targetTab = document.getElementById(tabName);
+    if (targetTab) targetTab.classList.add("active");
+    const targetNav = document.querySelector(`[onclick*="${tabName}"]`);
+    if (targetNav) targetNav.classList.add("active");
+}
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
@@ -947,6 +958,17 @@
     </div>
 
     <script>
+function showTab(tabName) {
+    console.log("Switching to tab:", tabName);
+    const contents = document.querySelectorAll(".content-tab");
+    contents.forEach(content => content.classList.remove("active"));
+    const navItems = document.querySelectorAll(".nav-item");
+    navItems.forEach(item => item.classList.remove("active"));
+    const targetTab = document.getElementById(tabName);
+    if (targetTab) targetTab.classList.add("active");
+    const targetNav = document.querySelector(`[onclick*="${tabName}"]`);
+    if (targetNav) targetNav.classList.add("active");
+}
         console.log('🏔️ THE COMMONS BUSINESS NETWORK LOADING 🏔️');
 
         // BACKEND CONFIGURATION
@@ -1027,10 +1049,6 @@
                 
             } catch (error) {
                 console.error('Wallet connection failed:', error);
-                showMessage('Failed to connect wallet: ' + error.message, 'error');
-                resetWalletUI();
-            }
-        }
 
         async function switchToArbitrumNetwork() {
             try {
@@ -1355,10 +1373,20 @@
 
         console.log('🏔️ THE COMMONS - MOUNTAINSHARES WEBSITE READY 🏔️');
     </script>
-<script src="force-proxy-mode.js"></script>
 </body>
 </html>
 <script>
+function showTab(tabName) {
+    console.log("Switching to tab:", tabName);
+    const contents = document.querySelectorAll(".content-tab");
+    contents.forEach(content => content.classList.remove("active"));
+    const navItems = document.querySelectorAll(".nav-item");
+    navItems.forEach(item => item.classList.remove("active"));
+    const targetTab = document.getElementById(tabName);
+    if (targetTab) targetTab.classList.add("active");
+    const targetNav = document.querySelector(`[onclick*="${tabName}"]`);
+    if (targetNav) targetNav.classList.add("active");
+}
 // WSL CORS Proxy Activation Patch
 document.addEventListener('DOMContentLoaded', function() {
   window.useProxyMode = true;
@@ -1378,6 +1406,17 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 <!-- NEW SOLUTION: HTML Form Submission (No CORS Issues) -->
 <script>
+function showTab(tabName) {
+    console.log("Switching to tab:", tabName);
+    const contents = document.querySelectorAll(".content-tab");
+    contents.forEach(content => content.classList.remove("active"));
+    const navItems = document.querySelectorAll(".nav-item");
+    navItems.forEach(item => item.classList.remove("active"));
+    const targetTab = document.getElementById(tabName);
+    if (targetTab) targetTab.classList.add("active");
+    const targetNav = document.querySelector(`[onclick*="${tabName}"]`);
+    if (targetNav) targetNav.classList.add("active");
+}
 // Replace the JavaScript fetch with HTML form submission
 function createPaymentForm() {
   const quantity = parseInt(document.getElementById('ms-quantity').value) || 1;
@@ -1438,6 +1477,17 @@ window.handlePurchaseClick = function() {
 console.log('✅ HTML form submission payment system activated');
 </script>
 <script>
+function showTab(tabName) {
+    console.log("Switching to tab:", tabName);
+    const contents = document.querySelectorAll(".content-tab");
+    contents.forEach(content => content.classList.remove("active"));
+    const navItems = document.querySelectorAll(".nav-item");
+    navItems.forEach(item => item.classList.remove("active"));
+    const targetTab = document.getElementById(tabName);
+    if (targetTab) targetTab.classList.add("active");
+    const targetNav = document.querySelector(`[onclick*="${tabName}"]`);
+    if (targetNav) targetNav.classList.add("active");
+}
 // Use MetaMask's official Stripe integration (from search results)
 async function purchaseWithMetaMaskStripe() {
   const quantity = parseInt(document.getElementById('ms-quantity').value) || 1;
@@ -1474,6 +1524,17 @@ window.initiatePurchase = purchaseWithMetaMaskStripe;
 console.log('✅ MetaMask-Stripe official integration loaded');
 </script>
 <script>
+function showTab(tabName) {
+    console.log("Switching to tab:", tabName);
+    const contents = document.querySelectorAll(".content-tab");
+    contents.forEach(content => content.classList.remove("active"));
+    const navItems = document.querySelectorAll(".nav-item");
+    navItems.forEach(item => item.classList.remove("active"));
+    const targetTab = document.getElementById(tabName);
+    if (targetTab) targetTab.classList.add("active");
+    const targetNav = document.querySelector(`[onclick*="${tabName}"]`);
+    if (targetNav) targetNav.classList.add("active");
+}
 // Fix MetaMask persistent connection issue (Ethereum Stack Exchange #165686 solution)
 document.addEventListener('DOMContentLoaded', async function() {
   console.log('🔍 Checking MetaMask persistent connection state...');
