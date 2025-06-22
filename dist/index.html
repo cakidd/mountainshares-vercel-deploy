@@ -1,9 +1,10 @@
+<!-- FORCE CACHE BREAK: 1750565623 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Commons -- West Virginia Business Network | MountainShares</title>
+    <title>MountainShares FIXED VERSION</title>
     <meta name="description" content="The future of local commerce. Innovative business networking platform for West Virginia communities.">
     
     <!-- Open Graph / Facebook -->
@@ -1497,43 +1498,40 @@ function createPaymentForm() {
     console.log('❌ Invalid wallet address');
     return;
   }
+// FETCH-based checkout (replacing form submission)
+try {
+  console.log('Creating checkout session:', { 
+    amount: amount, 
+    quantity: quantity, 
+    walletAddress: walletAddress 
+  });
   
-  // CREATE DYNAMIC HTML FORM (Stack Overflow #68630525 solution)
-  const form = document.createElement('form');
-  form.method = 'POST';
-  form.action = 'https://mountainshares-backend-production.up.railway.app/api/create-checkout-session';
+  const response = await fetch('https://mountainshares-backend-production.up.railway.app/api/create-checkout-session', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+    body: JSON.stringify({
+      amount: amount,
+      quantity: quantity,
+      walletAddress: walletAddress
+    })
+  });
+
+  const data = await response.json();
+  console.log('Checkout response:', data);
   
-  // Add form fields
-  const quantityInput = document.createElement('input');
-  quantityInput.type = 'hidden';
-  quantityInput.name = 'quantity';
-  quantityInput.value = quantity;
-  form.appendChild(quantityInput);
-  
-  const walletInput = document.createElement('input');
-  walletInput.type = 'hidden';
-  walletInput.name = 'walletAddress';
-  walletInput.value = walletAddress;
-  form.appendChild(walletInput);
-  
-  const amountInput = document.createElement('input');
-  amountInput.type = 'hidden';
-  amountInput.name = 'amount';
-  amountInput.value = quantity;
-  form.appendChild(amountInput);
-  
-  const productInput = document.createElement('input');
-  productInput.type = 'hidden';
-  productInput.name = 'productName';
-  productInput.value = 'MountainShares Token';
-  form.appendChild(productInput);
-  
-  // Submit form (NO CORS ISSUES - YouTube tutorial solution)
-  document.body.appendChild(form);
-  form.submit();
-  
-  console.log('✅ Form submitted - no CORS issues!');
-}
+  if (data.url) {
+    window.location.href = data.url;
+  } else {
+    console.error('No checkout URL received:', data);
+    alert('Checkout failed: No URL received');
+  }
+} catch (error) {
+  console.error('Stripe checkout failed:', error);
+  alert('Checkout failed: ' + error.message);
+}  
 
 // Override the purchase function to use form submission
 window.handlePurchaseClick = function() {
@@ -1741,7 +1739,7 @@ window.connectWallet = async function() {
 console.log('✅ MetaMask persistent connection handler loaded');
 </script>
 // REAL Stripe integration for MountainShares (Stack Overflow solution)
-const stripe = Stripe('pk_test_YOUR_REAL_STRIPE_PUBLISHABLE_KEY_HERE');
+const stripe = Stripe('pk_live_51P0x4eJwby4IAnqFKrjn7N02DGPRorWWbVdl1KvIvnCnz3eg9MPCbIechFRuh0t4VqEOXOOxcbqhPbFSeJUyytsz000lYoj67w');
 
 async function initiatePurchase() {
   const quantity = parseInt(document.getElementById('ms-quantity').value);
@@ -1804,34 +1802,34 @@ window.handlePurchaseClick = async function() {
   const quantity = parseInt(document.getElementById('ms-quantity').value) || 1;
   const walletAddress = document.getElementById('wallet-address').value || window.selectedAccount;
   
+ async function handleCheckout() { 
   try {
     const response = await fetch('https://mountainshares-backend-production.up.railway.app/api/create-checkout-session', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        quantity: quantity,
-        walletAddress: walletAddress,
-        amount: quantity,
-        productName: 'MountainShares Token'
+        credentials: 'include',
+        body: JSON.stringify({
+          quantity: yourQuantity,
+          walletAddress: yourWalletAddress,
+          amount: yourAmount,
       })
     });
     
     const data = await response.json();
     
     if (data.url) {
-      console.log('✅ Session URL received:', data.url);
-      // CLIENT-SIDE REDIRECT (Stack Overflow #68630229 solution)
+
       window.location.href = data.url;
     } else {
-      console.log('❌ No URL in response');
+      console.error('❌ No checkout URL received');
     }
     
   } catch (error) {
-    console.error('❌ Purchase failed:', error);
+    console.error('❌ Checkout failed:', error);
   }
-};
+}
 /* Force fresh deploy Sat Jun 21 20:12:03 EDT 2025 */
 
 function showTab(tabName) {
@@ -1839,3 +1837,4 @@ function showTab(tabName) {
     // Add your tab switching logic here
 }
 
+<- Based on Stack URL fix Sat Jun 21 23:04:06 EDT 2025 -->
