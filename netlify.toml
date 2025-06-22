@@ -1,10 +1,6 @@
 [build]
-  publish = "dist"
-  command = "rm -rf dist && mkdir -p dist && cp index.html dist/ && echo 'Fresh build complete'"
-
-[build.environment]
-  NETLIFY_NEXT_PLUGIN_SKIP = "true"
-
+  publish = "."
+  command = "echo 'Simple build'"
 [[redirects]]
   from = "/*"
   to = "/index.html"
