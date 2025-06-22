@@ -1,26 +1,11 @@
 [build]
   publish = "dist"
-  command = "mkdir -p dist && cp index.html dist/ && echo 'Commons website built'"
+  command = "rm -rf dist && mkdir -p dist && cp index.html dist/ && echo 'Fresh build complete'"
 
 [build.environment]
   NETLIFY_NEXT_PLUGIN_SKIP = "true"
-
-[functions]
-  directory = "netlify/functions"
-
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-
-[[headers]]
-  for = "/*"
-  [headers.values]
-    Content-Security-Policy = "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://js.stripe.com https://checkout.stripe.com https://www.googletagmanager.com https://tagmanager.google.com https://cdn.jsdelivr.net; object-src 'none'; base-uri 'self';"
-    X-Frame-Options = "DENY"
-    X-Content-Type-Options = "nosniff"
