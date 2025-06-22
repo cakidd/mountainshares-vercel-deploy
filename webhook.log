@@ -31,3 +31,14 @@ time="Sat, 21 Jun 2025 18:04:01 EDT" level=error msg="Error when writing ping me
 time="Sat, 21 Jun 2025 19:38:59 EDT" level=error msg="Error when writing ping message: websocket: close sent" prefix=websocket.Client.writePump
 time="Sat, 21 Jun 2025 20:11:58 EDT" level=error msg="Error when writing ping message: websocket: close sent" prefix=websocket.Client.writePump
 time="Sat, 21 Jun 2025 20:28:30 EDT" level=error msg="Error when writing ping message: websocket: close sent" prefix=websocket.Client.writePump
+time="Sat, 21 Jun 2025 21:18:20 EDT" level=error msg="Error when writing ping message: websocket: close sent" prefix=websocket.Client.writePump
+2025-06-21 21:33:45   --> payout.created [evt_1Rccn0Jwby4IAnqFUBgOHnKU]
+
+2025-06-21 21:33:45            [ERROR] Failed to POST: Post "http://localhost:3000/api/webhooks/stripe": dial tcp 127.0.0.1:3000: connect: connection refused
+
+2025-06-21 21:33:45   --> payout.paid [evt_1Rccn1Jwby4IAnqFZRHfA1cI]
+
+2025-06-21 21:33:45            [ERROR] Failed to POST: Post "http://localhost:3000/api/webhooks/stripe": dial tcp 127.0.0.1:3000: connect: connection refused
+
+time="Sat, 21 Jun 2025 21:43:12 EDT" level=error msg="Error when writing ping message: websocket: close sent" prefix=websocket.Client.writePump
+time="Sat, 21 Jun 2025 22:08:07 EDT" level=error msg="Error when writing ping message: websocket: close sent" prefix=websocket.Client.writePump

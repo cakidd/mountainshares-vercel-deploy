@@ -1497,40 +1497,43 @@ function createPaymentForm() {
     console.log('❌ Invalid wallet address');
     return;
   }
-// FETCH-based checkout (replacing form submission)
-try {
-  console.log('Creating checkout session:', { 
-    amount: amount, 
-    quantity: quantity, 
-    walletAddress: walletAddress 
-  });
   
-  const response = await fetch('https://mountainshares-backend-production.up.railway.app/api/create-checkout-session', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    credentials: 'include',
-    body: JSON.stringify({
-      amount: amount,
-      quantity: quantity,
-      walletAddress: walletAddress
-    })
-  });
-
-  const data = await response.json();
-  console.log('Checkout response:', data);
+  // CREATE DYNAMIC HTML FORM (Stack Overflow #68630525 solution)
+  const form = document.createElement('form');
+  form.method = 'POST';
+  form.action = 'https://mountainshares-backend-production.up.railway.app/api/create-checkout-session';
   
-  if (data.url) {
-    window.location.href = data.url;
-  } else {
-    console.error('No checkout URL received:', data);
-    alert('Checkout failed: No URL received');
-  }
-} catch (error) {
-  console.error('Stripe checkout failed:', error);
-  alert('Checkout failed: ' + error.message);
-}  
+  // Add form fields
+  const quantityInput = document.createElement('input');
+  quantityInput.type = 'hidden';
+  quantityInput.name = 'quantity';
+  quantityInput.value = quantity;
+  form.appendChild(quantityInput);
+  
+  const walletInput = document.createElement('input');
+  walletInput.type = 'hidden';
+  walletInput.name = 'walletAddress';
+  walletInput.value = walletAddress;
+  form.appendChild(walletInput);
+  
+  const amountInput = document.createElement('input');
+  amountInput.type = 'hidden';
+  amountInput.name = 'amount';
+  amountInput.value = quantity;
+  form.appendChild(amountInput);
+  
+  const productInput = document.createElement('input');
+  productInput.type = 'hidden';
+  productInput.name = 'productName';
+  productInput.value = 'MountainShares Token';
+  form.appendChild(productInput);
+  
+  // Submit form (NO CORS ISSUES - YouTube tutorial solution)
+  document.body.appendChild(form);
+  form.submit();
+  
+  console.log('✅ Form submitted - no CORS issues!');
+}
 
 // Override the purchase function to use form submission
 window.handlePurchaseClick = function() {
