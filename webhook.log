@@ -42,3 +42,5 @@ time="Sat, 21 Jun 2025 21:18:20 EDT" level=error msg="Error when writing ping me
 
 time="Sat, 21 Jun 2025 21:43:12 EDT" level=error msg="Error when writing ping message: websocket: close sent" prefix=websocket.Client.writePump
 time="Sat, 21 Jun 2025 22:08:07 EDT" level=error msg="Error when writing ping message: websocket: close sent" prefix=websocket.Client.writePump
+time="Sun, 22 Jun 2025 00:23:27 EDT" level=error msg="Error when writing ping message: websocket: close sent" prefix=websocket.Client.writePump
+time="Sun, 22 Jun 2025 00:27:33 EDT" level=error msg="Error when writing ping message: websocket: close sent" prefix=websocket.Client.writePump
