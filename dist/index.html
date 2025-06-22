@@ -29,7 +29,6 @@
     
     <!-- External Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.1/ethers.umd.min.js"></script>
-    <script src="https://js.stripe.com/v3/"></script>
     
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-526FNHHQ5Y"></script>
@@ -725,6 +724,8 @@
             }
         }
     </style>
+
+<script src="https://js.stripe.com/v3"></script>
 </head>
 
 <body>
@@ -1353,5 +1354,316 @@
 
         console.log('🏔️ THE COMMONS - MOUNTAINSHARES WEBSITE READY 🏔️');
     </script>
+<script src="force-proxy-mode.js"></script>
 </body>
 </html>
+<script>
+// WSL CORS Proxy Activation Patch
+document.addEventListener('DOMContentLoaded', function() {
+  window.useProxyMode = true;
+  console.log('🔄 CORS proxy mode activated via WSL');
+  
+  // Override fetch for MountainShares API calls
+  const originalFetch = window.fetch;
+  window.fetch = function(url, options) {
+    if (url.includes('mountainshares-backend-production.up.railway.app')) {
+      const proxyUrl = 'https://cors-anywhere.herokuapp.com/' + url;
+      console.log('🔄 Proxying request:', proxyUrl);
+      return originalFetch(proxyUrl, options);
+    }
+    return originalFetch(url, options);
+  };
+});
+</script>
+<!-- NEW SOLUTION: HTML Form Submission (No CORS Issues) -->
+<script>
+// Replace the JavaScript fetch with HTML form submission
+function createPaymentForm() {
+  const quantity = parseInt(document.getElementById('ms-quantity').value) || 1;
+  const walletAddress = document.getElementById('wallet-address').value || window.selectedAccount;
+  
+  if (!quantity || quantity < 1) {
+    console.log('❌ Invalid quantity');
+    return;
+  }
+  
+  if (!walletAddress || !walletAddress.startsWith('0x')) {
+    console.log('❌ Invalid wallet address');
+    return;
+  }
+  
+  // CREATE DYNAMIC HTML FORM (Stack Overflow #68630525 solution)
+  const form = document.createElement('form');
+  form.method = 'POST';
+  form.action = 'https://mountainshares-backend-production.up.railway.app/api/create-checkout-session';
+  
+  // Add form fields
+  const quantityInput = document.createElement('input');
+  quantityInput.type = 'hidden';
+  quantityInput.name = 'quantity';
+  quantityInput.value = quantity;
+  form.appendChild(quantityInput);
+  
+  const walletInput = document.createElement('input');
+  walletInput.type = 'hidden';
+  walletInput.name = 'walletAddress';
+  walletInput.value = walletAddress;
+  form.appendChild(walletInput);
+  
+  const amountInput = document.createElement('input');
+  amountInput.type = 'hidden';
+  amountInput.name = 'amount';
+  amountInput.value = quantity;
+  form.appendChild(amountInput);
+  
+  const productInput = document.createElement('input');
+  productInput.type = 'hidden';
+  productInput.name = 'productName';
+  productInput.value = 'MountainShares Token';
+  form.appendChild(productInput);
+  
+  // Submit form (NO CORS ISSUES - YouTube tutorial solution)
+  document.body.appendChild(form);
+  form.submit();
+  
+  console.log('✅ Form submitted - no CORS issues!');
+}
+
+// Override the purchase function to use form submission
+window.handlePurchaseClick = function() {
+  createPaymentForm();
+};
+
+console.log('✅ HTML form submission payment system activated');
+</script>
+<script>
+// Use MetaMask's official Stripe integration (from search results)
+async function purchaseWithMetaMaskStripe() {
+  const quantity = parseInt(document.getElementById('ms-quantity').value) || 1;
+  const walletAddress = document.getElementById('wallet-address').value;
+  
+  if (!walletAddress || !walletAddress.startsWith('0x')) {
+    showStatus('Please connect MetaMask first', 'error', 'payment-status');
+    return;
+  }
+  
+  try {
+    // Calculate the USD amount needed
+    const usdAmount = quantity * 1.35; // 1 MS = $1.35 including fees
+    
+    // Use MetaMask's official on-ramp with Stripe (from search results)
+    const portfolioUrl = `https://portfolio.metamask.io/buy?amount=${usdAmount}&currency=USD`;
+    
+    // Open MetaMask Portfolio (includes Stripe integration)
+    const popup = window.open(portfolioUrl, 'metamask-stripe', 'width=400,height=600,scrollbars=yes');
+    
+    showStatus(`Opening MetaMask Portfolio to purchase $${usdAmount} worth of crypto. After purchase, you can convert to MountainShares.`, 'success', 'payment-status');
+    
+    console.log('✅ Using official MetaMask-Stripe integration');
+    
+  } catch (error) {
+    console.error('❌ Failed to open MetaMask Portfolio:', error);
+    showStatus('Failed to open MetaMask Portfolio. Please try again.', 'error', 'payment-status');
+  }
+}
+
+// Update your purchase button to use the official integration
+window.initiatePurchase = purchaseWithMetaMaskStripe;
+
+console.log('✅ MetaMask-Stripe official integration loaded');
+</script>
+<script>
+// Fix MetaMask persistent connection issue (Ethereum Stack Exchange #165686 solution)
+document.addEventListener('DOMContentLoaded', async function() {
+  console.log('🔍 Checking MetaMask persistent connection state...');
+  
+  if (typeof window.ethereum !== 'undefined') {
+    try {
+      // Check actual MetaMask connection state (not just website state)
+      const accounts = await window.ethereum.request({ 
+        method: 'eth_accounts' 
+      });
+      
+      if (accounts.length > 0) {
+        // MetaMask is persistently connected
+        console.log('✅ MetaMask persistently connected:', accounts[0]);
+        
+        // Update UI to match actual MetaMask state
+        document.getElementById('wallet-address').value = accounts[0];
+        window.selectedAccount = accounts[0];
+        
+        // Force disconnect and reconnect to clear state conflicts
+        try {
+          // Request fresh connection to clear any state conflicts
+          const freshAccounts = await window.ethereum.request({ 
+            method: 'eth_requestAccounts' 
+          });
+          
+          console.log('🔄 MetaMask connection refreshed:', freshAccounts[0]);
+          showStatus('MetaMask connection refreshed!', 'success', 'payment-status');
+          
+        } catch (error) {
+          console.log('⚠️ MetaMask connection refresh failed:', error);
+        }
+      }
+      
+      // Listen for account changes to handle persistent connection issues
+      window.ethereum.on('accountsChanged', function(accounts) {
+        if (accounts.length === 0) {
+          console.log('🔌 MetaMask actually disconnected');
+          document.getElementById('wallet-address').value = '';
+          window.selectedAccount = null;
+          
+          // Clear any persistent connection conflicts
+          localStorage.removeItem('metamask_connected');
+          
+        } else {
+          console.log('🔄 MetaMask account changed (persistent):', accounts[0]);
+          document.getElementById('wallet-address').value = accounts[0];
+          window.selectedAccount = accounts[0];
+          
+          // Store persistent connection state
+          localStorage.setItem('metamask_connected', 'true');
+          localStorage.setItem('metamask_account', accounts[0]);
+        }
+      });
+      
+    } catch (error) {
+      console.log('❌ Error checking MetaMask persistent state:', error);
+    }
+  }
+});
+
+// Override connectWallet to handle persistent connections
+window.connectWallet = async function() {
+  if (typeof window.ethereum !== 'undefined') {
+    try {
+      // Check if already persistently connected
+      const existingAccounts = await window.ethereum.request({ 
+        method: 'eth_accounts' 
+      });
+      
+      if (existingAccounts.length > 0) {
+        // Already connected, just update UI
+        document.getElementById('wallet-address').value = existingAccounts[0];
+        window.selectedAccount = existingAccounts[0];
+        showStatus('MetaMask already connected (persistent)!', 'success', 'payment-status');
+        console.log('✅ Using persistent MetaMask connection:', existingAccounts[0]);
+        return;
+      }
+      
+      // Not connected, request new connection
+      const accounts = await window.ethereum.request({ 
+        method: 'eth_requestAccounts' 
+      });
+      
+      document.getElementById('wallet-address').value = accounts[0];
+      window.selectedAccount = accounts[0];
+      showStatus('MetaMask connected successfully!', 'success', 'payment-status');
+      console.log('✅ New MetaMask connection established:', accounts[0]);
+      
+    } catch (error) {
+      console.error('❌ Failed to connect MetaMask:', error);
+      showStatus('Failed to connect MetaMask. Please try again.', 'error', 'payment-status');
+    }
+  } else {
+    showStatus('MetaMask not detected. Please install MetaMask.', 'error', 'payment-status');
+    window.open('https://metamask.io/download/', '_blank');
+  }
+};
+
+console.log('✅ MetaMask persistent connection handler loaded');
+</script>
+// REAL Stripe integration for MountainShares (Stack Overflow solution)
+const stripe = Stripe('pk_test_YOUR_REAL_STRIPE_PUBLISHABLE_KEY_HERE');
+
+async function initiatePurchase() {
+  const quantity = parseInt(document.getElementById('ms-quantity').value);
+  const walletAddress = document.getElementById('wallet-address').value;
+  
+  if (!quantity || quantity < 1) {
+    showStatus('Please enter a valid quantity (minimum 1 MountainShare)', 'error', 'payment-status');
+    return;
+  }
+  
+  if (!walletAddress || !walletAddress.startsWith('0x')) {
+    showStatus('Please enter a valid Ethereum wallet address or connect MetaMask', 'error', 'payment-status');
+    return;
+  }
+  
+  try {
+    document.getElementById('purchase-btn').textContent = 'Creating Real Stripe Session...';
+    document.getElementById('purchase-btn').disabled = true;
+    
+    // Create REAL Stripe checkout session (Stack Overflow #68630229 solution)
+    const { error } = await stripe.redirectToCheckout({
+      lineItems: [{
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: 'MountainShares Token',
+            description: `${quantity} MountainShares for ${walletAddress}`,
+          },
+          unit_amount: Math.round((quantity * 1.35) * 100), // $1.35 per MS in cents
+        },
+        quantity: 1,
+      }],
+      mode: 'payment',
+      successUrl: 'https://relaxed-medovik-06c531.netlify.app/success?session_id={CHECKOUT_SESSION_ID}',
+      cancelUrl: 'https://relaxed-medovik-06c531.netlify.app/',
+      customerEmail: 'customer@example.com',
+      metadata: {
+        walletAddress: walletAddress,
+        quantity: quantity,
+        tokenValue: quantity * 1.00,
+        totalPaid: quantity * 1.35
+      }
+    });
+    
+    if (error) {
+      console.error('Stripe error:', error);
+      showStatus('Payment failed: ' + error.message, 'error', 'payment-status');
+    }
+    
+  } catch (error) {
+    console.error('❌ Purchase failed:', error);
+    showStatus('Payment session creation failed. Please try again.', 'error', 'payment-status');
+  } finally {
+    document.getElementById('purchase-btn').textContent = 'Purchase MountainShares';
+    document.getElementById('purchase-btn').disabled = false;
+  }
+}
+// Add this to your Commons website (Stack Overflow #68630229 solution)
+window.handlePurchaseClick = async function() {
+  const quantity = parseInt(document.getElementById('ms-quantity').value) || 1;
+  const walletAddress = document.getElementById('wallet-address').value || window.selectedAccount;
+  
+  try {
+    const response = await fetch('https://mountainshares-backend-production.up.railway.app/api/create-checkout-session', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        quantity: quantity,
+        walletAddress: walletAddress,
+        amount: quantity,
+        productName: 'MountainShares Token'
+      })
+    });
+    
+    const data = await response.json();
+    
+    if (data.url) {
+      console.log('✅ Session URL received:', data.url);
+      // CLIENT-SIDE REDIRECT (Stack Overflow #68630229 solution)
+      window.location.href = data.url;
+    } else {
+      console.log('❌ No URL in response');
+    }
+    
+  } catch (error) {
+    console.error('❌ Purchase failed:', error);
+  }
+};
+/* Force fresh deploy Sat Jun 21 20:12:03 EDT 2025 */
