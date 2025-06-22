@@ -1066,8 +1066,9 @@ function showTab(tabName) {
                 }
             }
 
-            // Load wallet data if on MountainShares tab and wallet connected
+            if (tabName === "mountainshares" && currentUserAddress) {
                 loadUserAccountData();
+            }
             }
         }
 
