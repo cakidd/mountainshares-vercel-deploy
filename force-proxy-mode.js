@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log('🔄 CORS proxy mode force-activated via WSL patch');
   
   // Override the API URL to always use proxy
-  window.MOUNTAINSHARES_API_PROXY = 'https://cors-anywhere.herokuapp.com/https://mountainshares-production.up.railway.app';
+  window.MOUNTAINSHARES_API_PROXY = 'https://cors-anywhere.herokuapp.com/https://mountainshares-backend-production.up.railway.app';
   
   // Patch the existing functions to use proxy
   const originalFetch = window.fetch;

@@ -4,7 +4,7 @@ window.handlePurchaseClick = async function() {
   const walletAddress = document.getElementById('wallet-address').value || window.selectedAccount;
   
   try {
-    const response = await fetch('https://mountainshares-production.up.railway.app/api/create-checkout-session', {
+    const response = await fetch('https://mountainshares-backend-production.up.railway.app/api/create-checkout-session', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

@@ -11,7 +11,7 @@ export default async function handler(req, res) {
   
   try {
     // Proxy request to Railway backend
-    const response = await fetch('https://mountainshares-production.up.railway.app/api/create-checkout-session', {
+    const response = await fetch('https://mountainshares-backend-production.up.railway.app/api/create-checkout-session', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

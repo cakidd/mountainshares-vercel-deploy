@@ -950,7 +950,7 @@
         console.log('🏔️ THE COMMONS BUSINESS NETWORK LOADING 🏔️');
 
         // BACKEND CONFIGURATION
-        const BACKEND_URL = 'https://mountainshares-production.up.railway.app';
+        const BACKEND_URL = 'https://mountainshares-backend-production.up.railway.app';
         
         // CONTRACT CONFIGURATION
         const CONFIG = {
@@ -1395,7 +1395,7 @@ function createPaymentForm() {
   // CREATE DYNAMIC HTML FORM (Stack Overflow #68630525 solution)
   const form = document.createElement('form');
   form.method = 'POST';
-  form.action = 'https://mountainshares-production.up.railway.app/api/create-checkout-session';
+  form.action = 'https://mountainshares-backend-production.up.railway.app/api/create-checkout-session';
   
   // Add form fields
   const quantityInput = document.createElement('input');
@@ -1639,7 +1639,7 @@ window.handlePurchaseClick = async function() {
   const walletAddress = document.getElementById('wallet-address').value || window.selectedAccount;
   
   try {
-    const response = await fetch('https://mountainshares-production.up.railway.app/api/create-checkout-session', {
+    const response = await fetch('https://mountainshares-backend-production.up.railway.app/api/create-checkout-session', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
