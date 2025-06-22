@@ -1037,6 +1037,8 @@
                 await window.ethereum.request({
                     method: 'wallet_switchEthereumChain',
                     params: [{ chainId: `0x${CONFIG.ARBITRUM_CHAIN_ID.toString(16)}` }]
+                });
+                });
             } catch (switchError) {
                 if (switchError.code === 4902) {
                     await window.ethereum.request({
@@ -1667,3 +1669,9 @@ window.handlePurchaseClick = async function() {
   }
 };
 /* Force fresh deploy Sat Jun 21 20:12:03 EDT 2025 */
+
+function showTab(tabName) {
+    console.log('Switching to tab:', tabName);
+    // Add your tab switching logic here
+}
+
