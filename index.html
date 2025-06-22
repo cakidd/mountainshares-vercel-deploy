@@ -1366,7 +1366,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Override fetch for MountainShares API calls
   const originalFetch = window.fetch;
   window.fetch = function(url, options) {
-    if (url.includes('mountainshares-production.up.railway.app')) {
+    if (url.includes('mountainshares-backend-production.up.railway.app')) {
       const proxyUrl = 'https://cors-anywhere.herokuapp.com/' + url;
       console.log('🔄 Proxying request:', proxyUrl);
       return originalFetch(proxyUrl, options);
